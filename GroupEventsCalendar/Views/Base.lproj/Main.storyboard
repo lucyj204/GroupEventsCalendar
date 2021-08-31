@@ -10,7 +10,7 @@
         <!--GroupsViewController-->
         <scene sceneID="5Gr-En-FGY">
             <objects>
-                <tableViewController title="GroupsViewController" id="1ZT-Jz-e1P" customClass="GroupsViewController" customModule="FriendEventsCalendar" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController title="GroupsViewController" id="1ZT-Jz-e1P" customClass="GroupsViewController" customModule="GroupEventsCalendar" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="7HP-ba-wDy">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -48,7 +48,7 @@
         <!--Events Calendar-->
         <scene sceneID="VTS-4y-lSV">
             <objects>
-                <tableViewController id="b8y-f8-Oen" customClass="EventsViewController" customModule="FriendEventsCalendar" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="b8y-f8-Oen" customClass="EventsViewController" customModule="GroupEventsCalendar" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="LYj-6f-xMW">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -69,7 +69,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Events Calendar" id="KhX-gM-9pk">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="jIk-2Z-Kvz"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="jIk-2Z-Kvz">
+                            <connections>
+                                <action selector="addButtonPressed:" destination="b8y-f8-Oen" id="5Br-V8-cHq"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oR2-cb-avQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
