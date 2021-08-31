@@ -9,23 +9,25 @@
 /* Begin PBXBuildFile section */
 		13281CA626D67BC00055F4E0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13281CA526D67BC00055F4E0 /* AppDelegate.swift */; };
 		13281CA826D67BC00055F4E0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13281CA726D67BC00055F4E0 /* SceneDelegate.swift */; };
-		13281CAA26D67BC00055F4E0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13281CA926D67BC00055F4E0 /* ViewController.swift */; };
 		13281CAD26D67BC00055F4E0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 13281CAB26D67BC00055F4E0 /* Main.storyboard */; };
-		13281CB026D67BC00055F4E0 /* FriendEventsCalendar.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 13281CAE26D67BC00055F4E0 /* FriendEventsCalendar.xcdatamodeld */; };
+		13281CB026D67BC00055F4E0 /* GroupEventsCalendarModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 13281CAE26D67BC00055F4E0 /* GroupEventsCalendarModel.xcdatamodeld */; };
 		13281CB226D67BC30055F4E0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13281CB126D67BC30055F4E0 /* Assets.xcassets */; };
 		13281CB526D67BC30055F4E0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 13281CB326D67BC30055F4E0 /* LaunchScreen.storyboard */; };
+		13281CBD26D6805C0055F4E0 /* GroupsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13281CBC26D6805C0055F4E0 /* GroupsViewController.swift */; };
+		13281CC226DE73FA0055F4E0 /* EventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13281CC126DE73FA0055F4E0 /* EventsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		13281CA226D67BC00055F4E0 /* FriendEventsCalendar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FriendEventsCalendar.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		13281CA226D67BC00055F4E0 /* GroupEventsCalendar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GroupEventsCalendar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13281CA526D67BC00055F4E0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		13281CA726D67BC00055F4E0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		13281CA926D67BC00055F4E0 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		13281CAC26D67BC00055F4E0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		13281CAF26D67BC00055F4E0 /* FriendEventsCalendar.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = FriendEventsCalendar.xcdatamodel; sourceTree = "<group>"; };
 		13281CB126D67BC30055F4E0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		13281CB426D67BC30055F4E0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		13281CB626D67BC30055F4E0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		13281CBC26D6805C0055F4E0 /* GroupsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupsViewController.swift; sourceTree = "<group>"; };
+		13281CC126DE73FA0055F4E0 /* EventsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -42,7 +44,7 @@
 		13281C9926D67BC00055F4E0 = {
 			isa = PBXGroup;
 			children = (
-				13281CA426D67BC00055F4E0 /* FriendEventsCalendar */,
+				13281CA426D67BC00055F4E0 /* GroupEventsCalendar */,
 				13281CA326D67BC00055F4E0 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -50,32 +52,57 @@
 		13281CA326D67BC00055F4E0 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				13281CA226D67BC00055F4E0 /* FriendEventsCalendar.app */,
+				13281CA226D67BC00055F4E0 /* GroupEventsCalendar.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		13281CA426D67BC00055F4E0 /* FriendEventsCalendar */ = {
+		13281CA426D67BC00055F4E0 /* GroupEventsCalendar */ = {
 			isa = PBXGroup;
 			children = (
+				13281CC026D682310055F4E0 /* Models */,
 				13281CA526D67BC00055F4E0 /* AppDelegate.swift */,
 				13281CA726D67BC00055F4E0 /* SceneDelegate.swift */,
-				13281CA926D67BC00055F4E0 /* ViewController.swift */,
-				13281CAB26D67BC00055F4E0 /* Main.storyboard */,
+				13281CBF26D6806F0055F4E0 /* Views */,
+				13281CBE26D680650055F4E0 /* Controllers */,
 				13281CB126D67BC30055F4E0 /* Assets.xcassets */,
 				13281CB326D67BC30055F4E0 /* LaunchScreen.storyboard */,
 				13281CB626D67BC30055F4E0 /* Info.plist */,
-				13281CAE26D67BC00055F4E0 /* FriendEventsCalendar.xcdatamodeld */,
 			);
-			path = FriendEventsCalendar;
+			path = GroupEventsCalendar;
+			sourceTree = "<group>";
+		};
+		13281CBE26D680650055F4E0 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				13281CBC26D6805C0055F4E0 /* GroupsViewController.swift */,
+				13281CC126DE73FA0055F4E0 /* EventsViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		13281CBF26D6806F0055F4E0 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				13281CAB26D67BC00055F4E0 /* Main.storyboard */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		13281CC026D682310055F4E0 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				13281CAE26D67BC00055F4E0 /* GroupEventsCalendarModel.xcdatamodeld */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		13281CA126D67BC00055F4E0 /* FriendEventsCalendar */ = {
+		13281CA126D67BC00055F4E0 /* GroupEventsCalendar */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 13281CB926D67BC30055F4E0 /* Build configuration list for PBXNativeTarget "FriendEventsCalendar" */;
+			buildConfigurationList = 13281CB926D67BC30055F4E0 /* Build configuration list for PBXNativeTarget "GroupEventsCalendar" */;
 			buildPhases = (
 				13281C9E26D67BC00055F4E0 /* Sources */,
 				13281C9F26D67BC00055F4E0 /* Frameworks */,
@@ -85,9 +112,9 @@
 			);
 			dependencies = (
 			);
-			name = FriendEventsCalendar;
+			name = GroupEventsCalendar;
 			productName = FriendEventsCalendar;
-			productReference = 13281CA226D67BC00055F4E0 /* FriendEventsCalendar.app */;
+			productReference = 13281CA226D67BC00055F4E0 /* GroupEventsCalendar.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -104,7 +131,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 13281C9D26D67BC00055F4E0 /* Build configuration list for PBXProject "FriendEventsCalendar" */;
+			buildConfigurationList = 13281C9D26D67BC00055F4E0 /* Build configuration list for PBXProject "GroupEventsCalendar" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -117,7 +144,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				13281CA126D67BC00055F4E0 /* FriendEventsCalendar */,
+				13281CA126D67BC00055F4E0 /* GroupEventsCalendar */,
 			);
 		};
 /* End PBXProject section */
@@ -140,10 +167,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				13281CB026D67BC00055F4E0 /* FriendEventsCalendar.xcdatamodeld in Sources */,
-				13281CAA26D67BC00055F4E0 /* ViewController.swift in Sources */,
+				13281CBD26D6805C0055F4E0 /* GroupsViewController.swift in Sources */,
+				13281CB026D67BC00055F4E0 /* GroupEventsCalendarModel.xcdatamodeld in Sources */,
 				13281CA626D67BC00055F4E0 /* AppDelegate.swift in Sources */,
 				13281CA826D67BC00055F4E0 /* SceneDelegate.swift in Sources */,
+				13281CC226DE73FA0055F4E0 /* EventsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -292,12 +320,12 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = YD9DU99DB2;
-				INFOPLIST_FILE = FriendEventsCalendar/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/GroupEventsCalendar/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.lucyjoyce.FriendEventsCalendar;
+				PRODUCT_BUNDLE_IDENTIFIER = com.lucyjoyce.GroupEventsCalendar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -311,12 +339,12 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = YD9DU99DB2;
-				INFOPLIST_FILE = FriendEventsCalendar/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/GroupEventsCalendar/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.lucyjoyce.FriendEventsCalendar;
+				PRODUCT_BUNDLE_IDENTIFIER = com.lucyjoyce.GroupEventsCalendar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -326,7 +354,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		13281C9D26D67BC00055F4E0 /* Build configuration list for PBXProject "FriendEventsCalendar" */ = {
+		13281C9D26D67BC00055F4E0 /* Build configuration list for PBXProject "GroupEventsCalendar" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				13281CB726D67BC30055F4E0 /* Debug */,
@@ -335,7 +363,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		13281CB926D67BC30055F4E0 /* Build configuration list for PBXNativeTarget "FriendEventsCalendar" */ = {
+		13281CB926D67BC30055F4E0 /* Build configuration list for PBXNativeTarget "GroupEventsCalendar" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				13281CBA26D67BC30055F4E0 /* Debug */,
@@ -347,13 +375,13 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		13281CAE26D67BC00055F4E0 /* FriendEventsCalendar.xcdatamodeld */ = {
+		13281CAE26D67BC00055F4E0 /* GroupEventsCalendarModel.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
 				13281CAF26D67BC00055F4E0 /* FriendEventsCalendar.xcdatamodel */,
 			);
 			currentVersion = 13281CAF26D67BC00055F4E0 /* FriendEventsCalendar.xcdatamodel */;
-			path = FriendEventsCalendar.xcdatamodeld;
+			path = GroupEventsCalendarModel.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

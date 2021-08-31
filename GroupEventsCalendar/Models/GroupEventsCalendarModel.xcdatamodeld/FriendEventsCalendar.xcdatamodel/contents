@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="18154" systemVersion="20G80" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Events" representedClassName="Events" syncable="YES" codeGenerationType="class">
+        <attribute name="date" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="event" attributeType="String"/>
+        <relationship name="parentGroup" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Groups" inverseName="events" inverseEntity="Groups"/>
+    </entity>
+    <entity name="Groups" representedClassName=".Groups" syncable="YES" codeGenerationType="class">
+        <attribute name="name" attributeType="String"/>
+        <relationship name="events" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Events" inverseName="parentGroup" inverseEntity="Events"/>
+    </entity>
+    <elements>
+        <element name="Groups" positionX="-9410.91015625" positionY="-702.5859375" width="128" height="73"/>
+        <element name="Events" positionX="-9232.39453125" positionY="-692.36328125" width="128" height="88"/>
+    </elements>
+</model>
