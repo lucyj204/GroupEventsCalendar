@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -15,6 +15,8 @@
 		13281CB526D67BC30055F4E0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 13281CB326D67BC30055F4E0 /* LaunchScreen.storyboard */; };
 		13281CBD26D6805C0055F4E0 /* GroupsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13281CBC26D6805C0055F4E0 /* GroupsViewController.swift */; };
 		13281CC226DE73FA0055F4E0 /* EventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13281CC126DE73FA0055F4E0 /* EventsViewController.swift */; };
+		13281CE626DFA96B0055F4E0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 13281CE526DFA96B0055F4E0 /* GoogleService-Info.plist */; };
+		EC879ADB38FDD9CFD8F69F7D /* Pods_GroupEventsCalendar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 887B07E9024EA9C34AEE4329 /* Pods_GroupEventsCalendar.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +30,10 @@
 		13281CB626D67BC30055F4E0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		13281CBC26D6805C0055F4E0 /* GroupsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupsViewController.swift; sourceTree = "<group>"; };
 		13281CC126DE73FA0055F4E0 /* EventsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsViewController.swift; sourceTree = "<group>"; };
+		13281CE526DFA96B0055F4E0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		524E5A5255C6B1F9D169DD36 /* Pods-GroupEventsCalendar.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GroupEventsCalendar.debug.xcconfig"; path = "Target Support Files/Pods-GroupEventsCalendar/Pods-GroupEventsCalendar.debug.xcconfig"; sourceTree = "<group>"; };
+		887B07E9024EA9C34AEE4329 /* Pods_GroupEventsCalendar.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GroupEventsCalendar.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9DF27A3CD4AE7384E9C95F34 /* Pods-GroupEventsCalendar.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GroupEventsCalendar.release.xcconfig"; path = "Target Support Files/Pods-GroupEventsCalendar/Pods-GroupEventsCalendar.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -35,17 +41,29 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EC879ADB38FDD9CFD8F69F7D /* Pods_GroupEventsCalendar.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		07064C6FD36592E9220C14AB /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				524E5A5255C6B1F9D169DD36 /* Pods-GroupEventsCalendar.debug.xcconfig */,
+				9DF27A3CD4AE7384E9C95F34 /* Pods-GroupEventsCalendar.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		13281C9926D67BC00055F4E0 = {
 			isa = PBXGroup;
 			children = (
 				13281CA426D67BC00055F4E0 /* GroupEventsCalendar */,
 				13281CA326D67BC00055F4E0 /* Products */,
+				07064C6FD36592E9220C14AB /* Pods */,
+				83DD796EFB63CE7EF375A7C7 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -68,6 +86,7 @@
 				13281CB126D67BC30055F4E0 /* Assets.xcassets */,
 				13281CB326D67BC30055F4E0 /* LaunchScreen.storyboard */,
 				13281CB626D67BC30055F4E0 /* Info.plist */,
+				13281CE526DFA96B0055F4E0 /* GoogleService-Info.plist */,
 			);
 			path = GroupEventsCalendar;
 			sourceTree = "<group>";
@@ -97,6 +116,14 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		83DD796EFB63CE7EF375A7C7 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				887B07E9024EA9C34AEE4329 /* Pods_GroupEventsCalendar.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -104,9 +131,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 13281CB926D67BC30055F4E0 /* Build configuration list for PBXNativeTarget "GroupEventsCalendar" */;
 			buildPhases = (
+				1B57AE6AFB512ABDE3809E8B /* [CP] Check Pods Manifest.lock */,
 				13281C9E26D67BC00055F4E0 /* Sources */,
 				13281C9F26D67BC00055F4E0 /* Frameworks */,
 				13281CA026D67BC00055F4E0 /* Resources */,
+				7983D84D60493E54179FEECA /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -155,12 +184,55 @@
 			buildActionMask = 2147483647;
 			files = (
 				13281CB526D67BC30055F4E0 /* LaunchScreen.storyboard in Resources */,
+				13281CE626DFA96B0055F4E0 /* GoogleService-Info.plist in Resources */,
 				13281CB226D67BC30055F4E0 /* Assets.xcassets in Resources */,
 				13281CAD26D67BC00055F4E0 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		1B57AE6AFB512ABDE3809E8B /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-GroupEventsCalendar-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7983D84D60493E54179FEECA /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-GroupEventsCalendar/Pods-GroupEventsCalendar-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-GroupEventsCalendar/Pods-GroupEventsCalendar-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-GroupEventsCalendar/Pods-GroupEventsCalendar-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		13281C9E26D67BC00055F4E0 /* Sources */ = {
@@ -315,6 +387,7 @@
 		};
 		13281CBA26D67BC30055F4E0 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 524E5A5255C6B1F9D169DD36 /* Pods-GroupEventsCalendar.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -334,6 +407,7 @@
 		};
 		13281CBB26D67BC30055F4E0 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9DF27A3CD4AE7384E9C95F34 /* Pods-GroupEventsCalendar.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
