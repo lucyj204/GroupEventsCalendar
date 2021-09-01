@@ -154,6 +154,9 @@
                                 <rect key="frame" x="188" y="238" width="38" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Login"/>
+                                <connections>
+                                    <action selector="loginButtonPressed:" destination="8pM-Wy-bjY" eventType="touchUpInside" id="kua-Fl-98G"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Dij-R1-Ur8"/>
@@ -161,6 +164,8 @@
                     </view>
                     <navigationItem key="navigationItem" title="Login" id="uH0-Vf-ELw"/>
                     <connections>
+                        <outlet property="emailTextField" destination="kha-WI-4sj" id="m8i-9x-J8T"/>
+                        <outlet property="passwordTextField" destination="wwn-pR-iXz" id="RUe-yB-rTs"/>
                         <segue destination="1ZT-Jz-e1P" kind="show" identifier="goToGroups" id="Emm-bh-kCc"/>
                     </connections>
                 </viewController>
@@ -192,6 +197,9 @@
                                 <rect key="frame" x="169" y="239" width="57" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Register"/>
+                                <connections>
+                                    <action selector="registerButtonPressed:" destination="Jcf-Cd-l3K" eventType="touchUpInside" id="PYK-Zk-lm0"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Csm-UC-udN"/>
@@ -199,6 +207,8 @@
                     </view>
                     <navigationItem key="navigationItem" title="Register" id="PpW-cS-Hya"/>
                     <connections>
+                        <outlet property="emailTextField" destination="mud-zE-WSW" id="KCR-R3-55R"/>
+                        <outlet property="passwordTextField" destination="VT4-Cd-sz9" id="Yk1-qI-RmC"/>
                         <segue destination="1ZT-Jz-e1P" kind="show" identifier="goToGroups" id="7dW-r4-ctZ"/>
                     </connections>
                 </viewController>
@@ -227,7 +237,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="7dW-r4-ctZ"/>
+        <segue reference="Emm-bh-kCc"/>
     </inferredMetricsTieBreakers>
     <resources>
         <systemColor name="systemBackgroundColor">
