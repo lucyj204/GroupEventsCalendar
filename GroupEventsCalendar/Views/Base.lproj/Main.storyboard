@@ -91,20 +91,26 @@
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JqP-Qe-B5Z" customClass="FSCalendar">
-                                <rect key="frame" x="63" y="125" width="240" height="128"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oZy-pJ-vYJ" customClass="FSCalendar">
+                                <rect key="frame" x="0.0" y="88" width="390" height="722"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <connections>
-                                    <outlet property="dataSource" destination="J5G-iC-vc2" id="Bj0-4g-N2D"/>
-                                    <outlet property="delegate" destination="J5G-iC-vc2" id="Mvc-ic-lPw"/>
-                                </connections>
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Kj6-EY-TJe"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Kj6-EY-TJe" firstAttribute="trailing" secondItem="oZy-pJ-vYJ" secondAttribute="trailing" id="BTA-eU-MOk"/>
+                            <constraint firstItem="oZy-pJ-vYJ" firstAttribute="top" secondItem="Kj6-EY-TJe" secondAttribute="top" id="JSE-CR-9q8"/>
+                            <constraint firstItem="Kj6-EY-TJe" firstAttribute="bottom" secondItem="oZy-pJ-vYJ" secondAttribute="bottom" id="JVm-rO-uPf"/>
+                            <constraint firstItem="oZy-pJ-vYJ" firstAttribute="leading" secondItem="Kj6-EY-TJe" secondAttribute="leading" id="nBO-RW-Ru1"/>
+                        </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="sce-lW-KD5"/>
+                    <navigationItem key="navigationItem" id="sce-lW-KD5">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="KPP-Qa-KxQ"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="calendar" destination="oZy-pJ-vYJ" id="LpS-QQ-Cja"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MaA-8S-Bha" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
