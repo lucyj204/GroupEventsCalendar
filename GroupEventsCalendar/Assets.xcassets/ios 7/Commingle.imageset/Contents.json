@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "GroupCalendar.png",
+      "filename" : "Commingle.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "GroupCalendar@2x.png",
+      "filename" : "Commingle@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "GroupCalendar@3x.png",
+      "filename" : "Commingle@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

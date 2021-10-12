@@ -20,6 +20,8 @@
 		13281CE826DFAC780055F4E0 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13281CE726DFAC780055F4E0 /* WelcomeViewController.swift */; };
 		13281CEA26DFAC870055F4E0 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13281CE926DFAC870055F4E0 /* RegisterViewController.swift */; };
 		13281CEC26DFAC970055F4E0 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13281CEB26DFAC970055F4E0 /* LoginViewController.swift */; };
+		134392F72710936700A04EB4 /* Pacifico-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 134392F52710933500A04EB4 /* Pacifico-Regular.ttf */; };
+		134392F9271637F200A04EB4 /* EventInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 134392F8271637F200A04EB4 /* EventInformation.swift */; };
 		EC879ADB38FDD9CFD8F69F7D /* Pods_GroupEventsCalendar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 887B07E9024EA9C34AEE4329 /* Pods_GroupEventsCalendar.framework */; };
 /* End PBXBuildFile section */
 
@@ -39,6 +41,8 @@
 		13281CE726DFAC780055F4E0 /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		13281CE926DFAC870055F4E0 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		13281CEB26DFAC970055F4E0 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		134392F52710933500A04EB4 /* Pacifico-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pacifico-Regular.ttf"; sourceTree = "<group>"; };
+		134392F8271637F200A04EB4 /* EventInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventInformation.swift; sourceTree = "<group>"; };
 		524E5A5255C6B1F9D169DD36 /* Pods-GroupEventsCalendar.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GroupEventsCalendar.debug.xcconfig"; path = "Target Support Files/Pods-GroupEventsCalendar/Pods-GroupEventsCalendar.debug.xcconfig"; sourceTree = "<group>"; };
 		887B07E9024EA9C34AEE4329 /* Pods_GroupEventsCalendar.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GroupEventsCalendar.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9DF27A3CD4AE7384E9C95F34 /* Pods-GroupEventsCalendar.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GroupEventsCalendar.release.xcconfig"; path = "Target Support Files/Pods-GroupEventsCalendar/Pods-GroupEventsCalendar.release.xcconfig"; sourceTree = "<group>"; };
@@ -86,15 +90,16 @@
 		13281CA426D67BC00055F4E0 /* GroupEventsCalendar */ = {
 			isa = PBXGroup;
 			children = (
-				13281CC026D682310055F4E0 /* Models */,
 				13281CA526D67BC00055F4E0 /* AppDelegate.swift */,
 				13281CA726D67BC00055F4E0 /* SceneDelegate.swift */,
+				13281CC026D682310055F4E0 /* Models */,
 				13281CBF26D6806F0055F4E0 /* Views */,
 				13281CBE26D680650055F4E0 /* Controllers */,
 				13281CB126D67BC30055F4E0 /* Assets.xcassets */,
 				13281CB326D67BC30055F4E0 /* LaunchScreen.storyboard */,
 				13281CB626D67BC30055F4E0 /* Info.plist */,
 				13281CE526DFA96B0055F4E0 /* GoogleService-Info.plist */,
+				134392F62710933900A04EB4 /* Fonts */,
 			);
 			path = GroupEventsCalendar;
 			sourceTree = "<group>";
@@ -124,8 +129,17 @@
 			isa = PBXGroup;
 			children = (
 				13281CAE26D67BC00055F4E0 /* GroupEventsCalendarModel.xcdatamodeld */,
+				134392F8271637F200A04EB4 /* EventInformation.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		134392F62710933900A04EB4 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				134392F52710933500A04EB4 /* Pacifico-Regular.ttf */,
+			);
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 		83DD796EFB63CE7EF375A7C7 /* Frameworks */ = {
@@ -199,6 +213,7 @@
 				13281CE626DFA96B0055F4E0 /* GoogleService-Info.plist in Resources */,
 				13281CB226D67BC30055F4E0 /* Assets.xcassets in Resources */,
 				13281CAD26D67BC00055F4E0 /* Main.storyboard in Resources */,
+				134392F72710936700A04EB4 /* Pacifico-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -254,6 +269,7 @@
 				13281CBD26D6805C0055F4E0 /* GroupsViewController.swift in Sources */,
 				13281CB026D67BC00055F4E0 /* GroupEventsCalendarModel.xcdatamodeld in Sources */,
 				13281CEA26DFAC870055F4E0 /* RegisterViewController.swift in Sources */,
+				134392F9271637F200A04EB4 /* EventInformation.swift in Sources */,
 				13281CA626D67BC00055F4E0 /* AppDelegate.swift in Sources */,
 				13281CEC26DFAC970055F4E0 /* LoginViewController.swift in Sources */,
 				13281CE826DFAC780055F4E0 /* WelcomeViewController.swift in Sources */,
