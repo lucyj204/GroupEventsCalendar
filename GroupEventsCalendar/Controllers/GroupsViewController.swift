@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import CoreData
 import RealmSwift
 
 class GroupsViewController: UITableViewController {
@@ -29,8 +28,10 @@ class GroupsViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = super.tableView(tableView, cellForRowAt: indexPath)
+        let cell = UITableViewCell()
+        
         cell.textLabel?.text = groupArray?[indexPath.row].name ?? "No groups added"
+        
         return cell
 
     }
@@ -69,7 +70,10 @@ class GroupsViewController: UITableViewController {
     
     func saveGroups(group: Groups) {
         do {
-            try realm.write({realm.add(group)})
+            try realm.write {
+                realm.add(group)
+                
+            }
         } catch {
             print("Error saving group, \(error)")
         }

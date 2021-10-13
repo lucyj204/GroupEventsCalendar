@@ -18,13 +18,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
-        print(Realm.Configuration.defaultConfiguration.fileURL)
+//        print(Realm.Configuration.defaultConfiguration.fileURL)
         
         do {
         let realm = try Realm()
         } catch {
             print("Error initialising new realm, \(error)")
         }
+        
+        let configuration = Realm.Configuration(schemaVersion: 1, migrationBlock: { migration, oldSchemaVersion in
+            if (oldSchemaVersion < 1) {
+                
+            }
+            
+        })
+        
+        Realm.Configuration.defaultConfiguration = configuration
+        let _ = try! Realm()
         
         
         

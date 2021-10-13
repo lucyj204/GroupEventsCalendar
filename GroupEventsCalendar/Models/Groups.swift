@@ -12,5 +12,5 @@ class Groups: Object {
     
    @objc dynamic var name : String = ""
     
-    let events = List<EventInformation>()
+    let events = List<EventDetails>()
 }

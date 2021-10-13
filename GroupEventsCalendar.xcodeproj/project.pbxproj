@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1320DE5827173285004955FC /* EventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1320DE5727173284004955FC /* EventsViewController.swift */; };
+		1320DE5A271739B2004955FC /* EventDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1320DE59271739B2004955FC /* EventDetails.swift */; };
 		1327536A2700DFE700D6304B /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 132753692700DFE700D6304B /* CalendarViewController.swift */; };
 		13281CA626D67BC00055F4E0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13281CA526D67BC00055F4E0 /* AppDelegate.swift */; };
 		13281CA826D67BC00055F4E0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13281CA726D67BC00055F4E0 /* SceneDelegate.swift */; };
@@ -19,12 +21,13 @@
 		13281CEA26DFAC870055F4E0 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13281CE926DFAC870055F4E0 /* RegisterViewController.swift */; };
 		13281CEC26DFAC970055F4E0 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13281CEB26DFAC970055F4E0 /* LoginViewController.swift */; };
 		134392F72710936700A04EB4 /* Pacifico-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 134392F52710933500A04EB4 /* Pacifico-Regular.ttf */; };
-		134392F9271637F200A04EB4 /* EventInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 134392F8271637F200A04EB4 /* EventInformation.swift */; };
 		134392FB2716F11600A04EB4 /* Groups.swift in Sources */ = {isa = PBXBuildFile; fileRef = 134392FA2716F11600A04EB4 /* Groups.swift */; };
 		EC879ADB38FDD9CFD8F69F7D /* Pods_GroupEventsCalendar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 887B07E9024EA9C34AEE4329 /* Pods_GroupEventsCalendar.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1320DE5727173284004955FC /* EventsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsViewController.swift; sourceTree = "<group>"; };
+		1320DE59271739B2004955FC /* EventDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetails.swift; sourceTree = "<group>"; };
 		132753692700DFE700D6304B /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		13281CA226D67BC00055F4E0 /* GroupEventsCalendar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GroupEventsCalendar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13281CA526D67BC00055F4E0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -39,7 +42,6 @@
 		13281CE926DFAC870055F4E0 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		13281CEB26DFAC970055F4E0 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		134392F52710933500A04EB4 /* Pacifico-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pacifico-Regular.ttf"; sourceTree = "<group>"; };
-		134392F8271637F200A04EB4 /* EventInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventInformation.swift; sourceTree = "<group>"; };
 		134392FA2716F11600A04EB4 /* Groups.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Groups.swift; sourceTree = "<group>"; };
 		524E5A5255C6B1F9D169DD36 /* Pods-GroupEventsCalendar.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GroupEventsCalendar.debug.xcconfig"; path = "Target Support Files/Pods-GroupEventsCalendar/Pods-GroupEventsCalendar.debug.xcconfig"; sourceTree = "<group>"; };
 		887B07E9024EA9C34AEE4329 /* Pods_GroupEventsCalendar.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GroupEventsCalendar.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -110,6 +112,7 @@
 				13281CEB26DFAC970055F4E0 /* LoginViewController.swift */,
 				13281CBC26D6805C0055F4E0 /* GroupsViewController.swift */,
 				132753692700DFE700D6304B /* CalendarViewController.swift */,
+				1320DE5727173284004955FC /* EventsViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -126,7 +129,7 @@
 			isa = PBXGroup;
 			children = (
 				134392FA2716F11600A04EB4 /* Groups.swift */,
-				134392F8271637F200A04EB4 /* EventInformation.swift */,
+				1320DE59271739B2004955FC /* EventDetails.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -264,14 +267,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				13281CBD26D6805C0055F4E0 /* GroupsViewController.swift in Sources */,
+				1320DE5A271739B2004955FC /* EventDetails.swift in Sources */,
 				134392FB2716F11600A04EB4 /* Groups.swift in Sources */,
 				13281CEA26DFAC870055F4E0 /* RegisterViewController.swift in Sources */,
-				134392F9271637F200A04EB4 /* EventInformation.swift in Sources */,
 				13281CA626D67BC00055F4E0 /* AppDelegate.swift in Sources */,
 				13281CEC26DFAC970055F4E0 /* LoginViewController.swift in Sources */,
 				13281CE826DFAC780055F4E0 /* WelcomeViewController.swift in Sources */,
 				1327536A2700DFE700D6304B /* CalendarViewController.swift in Sources */,
 				13281CA826D67BC00055F4E0 /* SceneDelegate.swift in Sources */,
+				1320DE5827173285004955FC /* EventsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

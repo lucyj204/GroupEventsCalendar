@@ -16,7 +16,8 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
      
     @IBOutlet weak var calendar: FSCalendar!
     
-    var eventInformation : Results<EventInformation>?
+    var eventInformation : Results<EventDetails>?
+    let datePicker = UIDatePicker()
     
     let realm = try! Realm()
     
@@ -49,14 +50,57 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
         return 1;
     }
     
-    @IBAction func AddEvent(_ sender: UIBarButtonItem) {
+//    @IBAction func AddEvent(_ sender: UIBarButtonItem) {
+//
+//        var titleField = UITextField()
+//        var categoryField = UITextField()
+//
+//        let alert = UIAlertController(title: "Add New Event", message: "", preferredStyle: .alert)
+//
+//        let action = UIAlertAction(title: "Add Event", style: .default) { (action) in
+//
+//            if let currentGroup = self.selectedGroup {
+//                do {
+//                    try self.realm.write {
+//                        let newEvent = EventInformation()
+//                        newEvent.title = titleField.text!
+//                        newEvent.startDate = Date()
+//                        newEvent.endDate = Date()
+//                        newEvent.category = categoryField.text!
+//                    }
+//                } catch {
+//                    print("Error saving new event")
+//                }
+//
+//            }
+//            self.calendar.reloadData()
+//        }
+//
+//        alert.addTextField { (alertTextField) in
+//            alertTextField.placeholder = "Add name of event"
+//            titleField = alertTextField
+//        }
+//
+//
+//        alert.addAction(action)
+//
+//        present(alert, animated: true, completion: nil)
+//
+//    }
         
-        var titleField = UITextField()
-        var startDateField = DateFormatter()
-        var endDateField = DateFormatter()
-        var categoryField = UITextField()
+        func createToolbar() -> UIToolbar {
+            let toolbar = UIToolbar()
+            toolbar.sizeToFit()
+            
+            let doneBtn = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: nil)
+            toolbar.setItems([doneBtn], animated: true)
+            
+            return toolbar
+        }
         
-        let alert = UIAlertController(title: "Add New Event", message: "", preferredStyle: .alert)
+        func createDatePicker() {
+            
+        }
         
 //        @objc dynamic var title: String = ""
 //        @objc dynamic var startDate: Date? = Date()
@@ -67,8 +111,7 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
     
     func loadCalendar() {
         
-        eventInformation = selectedGroup?.events.sorted(byKeyPath: "title", ascending: true)
-        self.calendar.reloadData()
+
         
     }
     
@@ -100,4 +143,4 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
 //To use Monday as the first column - calendar.firstWeekday = 2
 
 
-}
+
