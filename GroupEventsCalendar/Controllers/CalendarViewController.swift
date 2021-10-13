@@ -9,32 +9,67 @@ import UIKit
 import FSCalendar
 import SnapKit
 import RealmSwift
+import SwiftUI
 
 
 class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDataSource {
      
     @IBOutlet weak var calendar: FSCalendar!
     
+    var eventInformation : Results<EventInformation>?
     
+    let realm = try! Realm()
+    
+    var selectedGroup : Groups? {
+        didSet {
+            loadCalendar()
+        }
+    }
     
     override func viewDidLoad() {
+        loadCalendar()
         calendar.delegate = self
         calendar.dataSource = self
     }
     
-    private var datesWithEvent: [NSDate] = []
+//    private var datesWithEvent: [NSDate] = []
     
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
         let formatter = DateFormatter()
         formatter.dateFormat = "MM-dd-YYYY"
         let string = formatter.string(from: date)
         print("\(string)")
-        calendar.allowsMultipleSelection = true
-        calendar.swipeToChooseGesture.isEnabled = true
+        
+//        calendar.allowsMultipleSelection = true
+//        calendar.swipeToChooseGesture.isEnabled = true
         //maybe add something here to make the event screen appear - can edit the dates and provide event information/ go to the event - see the documentation - this is where you tell the calendar to do something once a date is selected.
     }
     
+    func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {
+        return 1;
+    }
+    
     @IBAction func AddEvent(_ sender: UIBarButtonItem) {
+        
+        var titleField = UITextField()
+        var startDateField = DateFormatter()
+        var endDateField = DateFormatter()
+        var categoryField = UITextField()
+        
+        let alert = UIAlertController(title: "Add New Event", message: "", preferredStyle: .alert)
+        
+//        @objc dynamic var title: String = ""
+//        @objc dynamic var startDate: Date? = Date()
+//        @objc dynamic var endDate: Date? = Date ()
+//        @objc dynamic var category: String = ""
+        
+    }
+    
+    func loadCalendar() {
+        
+        eventInformation = selectedGroup?.events.sorted(byKeyPath: "title", ascending: true)
+        self.calendar.reloadData()
+        
     }
     
     

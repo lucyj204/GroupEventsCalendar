@@ -7,17 +7,16 @@
 
 import UIKit
 import CoreData
+import RealmSwift
 
 class GroupsViewController: UITableViewController {
     
-    var groupArray = [Groups]()
+    let realm = try! Realm()
     
-    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    var groupArray : Results<Groups>?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask))
-        
        
         loadGroups()
     }
@@ -25,15 +24,15 @@ class GroupsViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return groupArray.count
+        return groupArray?.count ?? 1
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let groups = groupArray[indexPath.row]
-        let cell = tableView.dequeueReusableCell(withIdentifier: "GroupNameCell", for: indexPath)
-        cell.textLabel?.text = groups.name
         
+        let cell = super.tableView(tableView, cellForRowAt: indexPath)
+        cell.textLabel?.text = groupArray?[indexPath.row].name ?? "No groups added"
         return cell
+
     }
 
 
@@ -46,12 +45,11 @@ class GroupsViewController: UITableViewController {
         let alert = UIAlertController(title: "Add New Group", message: "", preferredStyle: .alert)
         let action = UIAlertAction(title: "Add Group", style: .default) { (action) in
             
-            let newGroup = Groups(context: self.context)
+            let newGroup = Groups()
             newGroup.name = textField.text!
             print(textField.text!)
-            self.groupArray.append(newGroup)
             
-            self.saveGroups()
+            self.saveGroups(group: newGroup)
         }
         
         alert.addTextField { (alertTextField) in
@@ -69,9 +67,9 @@ class GroupsViewController: UITableViewController {
     
     //MARK: - Model Manipulation Methods
     
-    func saveGroups() {
+    func saveGroups(group: Groups) {
         do {
-            try context.save()
+            try realm.write({realm.add(group)})
         } catch {
             print("Error saving group, \(error)")
         }
@@ -79,12 +77,8 @@ class GroupsViewController: UITableViewController {
     }
     
     
-    func loadGroups(with request: NSFetchRequest<Groups> = Groups.fetchRequest()) {
-        do {
-            groupArray = try context.fetch(request)
-        } catch {
-            print("Error loading groups from context \(error)")
-        }
+    func loadGroups() {
+        groupArray = realm.objects(Groups.self)
         tableView.reloadData()
     }
     
@@ -94,11 +88,12 @@ class GroupsViewController: UITableViewController {
         performSegue(withIdentifier: "goToCalendar", sender: self)
     }
     
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        let destinationViewController = segue.destination as! CalendarViewController
-//
-//        if let indexPath = tableView.indexPathForSelectedRow {
-//            destinationViewController.selectedGroup = groupArray[indexPath.row]
-//        }
-//    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let destinationVC = segue.destination as! CalendarViewController
+        
+        if let indexPath = tableView.indexPathForSelectedRow {
+            destinationVC.selectedGroup = groupArray?[indexPath.row]
+        }
+    }
+    
 }
