@@ -21,14 +21,13 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
     
     let realm = try! Realm()
     
-    var selectedGroup : Groups? {
-        didSet {
-            loadCalendar()
-        }
-    }
+//    var selectedGroup : Groups? {
+//        didSet {
+//            loadCalendar()
+//        }
+//    }
     
     override func viewDidLoad() {
-        loadCalendar()
         calendar.delegate = self
         calendar.dataSource = self
     }
@@ -44,35 +43,45 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
 //        calendar.allowsMultipleSelection = true
 //        calendar.swipeToChooseGesture.isEnabled = true
         //maybe add something here to make the event screen appear - can edit the dates and provide event information/ go to the event - see the documentation - this is where you tell the calendar to do something once a date is selected.
-    }
-    
-    func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {
-        return 1;
-    }
-    
         
-        func createToolbar() -> UIToolbar {
-            let toolbar = UIToolbar()
-            toolbar.sizeToFit()
-            
-            let doneBtn = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: nil)
-            toolbar.setItems([doneBtn], animated: true)
-            
-            return toolbar
-        }
+    }
+ 
+    
+    @IBAction func listButtonClicked(_ sender: Any) {
         
-        func createDatePicker() {
-            
-        }
-
+        _ = navigationController?.popViewController(animated: true)
         
     }
     
-    func loadCalendar() {
-        
-
-        
-    }
+}
+    
+//    func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {
+//        return 1;
+//    }
+//
+//
+//        func createToolbar() -> UIToolbar {
+//            let toolbar = UIToolbar()
+//            toolbar.sizeToFit()
+//
+//            let doneBtn = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: nil)
+//            toolbar.setItems([doneBtn], animated: true)
+//
+//            return toolbar
+//        }
+//
+//        func createDatePicker() {
+//
+//        }
+//
+//
+//    }
+//
+//    func loadCalendar() {
+//
+//
+//
+//    }
     
 
     

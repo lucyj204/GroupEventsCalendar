@@ -52,7 +52,7 @@
             </objects>
             <point key="canvasLocation" x="-683" y="86"/>
         </scene>
-        <!--Calendar View Controller-->
+        <!--Calendar View-->
         <scene sceneID="OZC-Yj-t2R">
             <objects>
                 <viewController id="J5G-iC-vc2" customClass="CalendarViewController" customModule="GroupEventsCalendar" customModuleProvider="target" sceneMemberID="viewController">
@@ -74,14 +74,19 @@
                             <constraint firstItem="oZy-pJ-vYJ" firstAttribute="leading" secondItem="Kj6-EY-TJe" secondAttribute="leading" id="nBO-RW-Ru1"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="sce-lW-KD5">
+                    <navigationItem key="navigationItem" title="Calendar View" id="sce-lW-KD5">
                         <rightBarButtonItems>
                             <barButtonItem systemItem="add" id="KPP-Qa-KxQ">
                                 <connections>
                                     <action selector="AddEvent:" destination="J5G-iC-vc2" id="Z8Z-49-Z2c"/>
+                                    <segue destination="aIs-A9-niL" kind="presentation" id="43x-ra-6GE"/>
                                 </connections>
                             </barButtonItem>
-                            <barButtonItem title="Item" image="list.dash" catalog="system" id="WFF-dQ-PFY"/>
+                            <barButtonItem title="Item" image="list.dash" catalog="system" id="WFF-dQ-PFY">
+                                <connections>
+                                    <action selector="listButtonClicked:" destination="J5G-iC-vc2" id="36L-Kr-LuG"/>
+                                </connections>
+                            </barButtonItem>
                         </rightBarButtonItems>
                     </navigationItem>
                     <connections>
@@ -92,7 +97,106 @@
             </objects>
             <point key="canvasLocation" x="1298" y="85"/>
         </scene>
-        <!--Events View Controller-->
+        <!--Event Creation View Controller-->
+        <scene sceneID="1sr-yG-txD">
+            <objects>
+                <viewController modalTransitionStyle="crossDissolve" modalPresentationStyle="overCurrentContext" id="aIs-A9-niL" customClass="EventCreationViewController" customModule="GroupEventsCalendar" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="r55-E8-0u4">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="S5y-jH-uf9" userLabel="EventCreationView">
+                                <rect key="frame" x="46" y="194" width="298" height="456"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="amt-lZ-Nof">
+                                        <rect key="frame" x="49" y="19.999999999999986" width="200" height="248.66666666666663"/>
+                                        <subviews>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Title" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WeK-Zo-dck">
+                                                <rect key="frame" x="0.0" y="0.0" width="200" height="34"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Location" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ioL-Em-bwK">
+                                                <rect key="frame" x="0.0" y="42" width="200" height="34"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Start Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KMG-Ci-pDB">
+                                                <rect key="frame" x="0.0" y="84" width="200" height="20.333333333333329"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" style="compact" translatesAutoresizingMaskIntoConstraints="NO" id="cYX-e0-Q73">
+                                                <rect key="frame" x="0.0" y="113" width="200" height="50"/>
+                                            </datePicker>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="End Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DXs-YB-yqv">
+                                                <rect key="frame" x="0.0" y="170.33333333333331" width="200" height="20.333333333333343"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" style="compact" translatesAutoresizingMaskIntoConstraints="NO" id="MlU-lr-EaN">
+                                                <rect key="frame" x="0.0" y="199" width="200" height="50"/>
+                                            </datePicker>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="200" id="ki0-mm-drQ"/>
+                                        </constraints>
+                                    </stackView>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="contactAdd" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j6q-Hd-vvm">
+                                        <rect key="frame" x="49" y="332" width="200" height="30.666666666666686"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <buttonConfiguration key="configuration" style="tinted" cornerStyle="capsule">
+                                            <backgroundConfiguration key="background">
+                                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </backgroundConfiguration>
+                                            <attributedString key="attributedTitle">
+                                                <fragment content=" Add Event">
+                                                    <attributes>
+                                                        <font key="NSFont" size="14" name="PTSans-Regular"/>
+                                                        <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                    </attributes>
+                                                </fragment>
+                                            </attributedString>
+                                            <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <color key="baseBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </buttonConfiguration>
+                                        <connections>
+                                            <action selector="addEventButtonPressed:" destination="aIs-A9-niL" eventType="touchUpInside" id="lkC-LB-jBs"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.87058818339999999" green="0.58823531870000001" blue="0.231372565" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstItem="amt-lZ-Nof" firstAttribute="top" secondItem="S5y-jH-uf9" secondAttribute="top" constant="20" id="DpF-5R-H5G"/>
+                                    <constraint firstItem="amt-lZ-Nof" firstAttribute="centerX" secondItem="S5y-jH-uf9" secondAttribute="centerX" id="bqd-qc-RBB"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="3Db-0z-xyl"/>
+                        <color key="backgroundColor" white="1" alpha="0.50372516556291391" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="S5y-jH-uf9" secondAttribute="trailing" constant="30" id="MwO-m3-y91"/>
+                            <constraint firstItem="S5y-jH-uf9" firstAttribute="centerX" secondItem="r55-E8-0u4" secondAttribute="centerX" id="SXj-Bh-6lo"/>
+                            <constraint firstItem="S5y-jH-uf9" firstAttribute="top" secondItem="r55-E8-0u4" secondAttribute="topMargin" constant="150" id="ZTB-pZ-k6C"/>
+                            <constraint firstItem="S5y-jH-uf9" firstAttribute="centerY" secondItem="r55-E8-0u4" secondAttribute="centerY" id="f45-Td-Rhe"/>
+                            <constraint firstItem="S5y-jH-uf9" firstAttribute="leading" secondItem="r55-E8-0u4" secondAttribute="leadingMargin" constant="30" id="mhY-Fk-xvS"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="endDatePicker" destination="MlU-lr-EaN" id="Vgp-Id-DxT"/>
+                        <outlet property="eventCreationView" destination="S5y-jH-uf9" id="VFc-bL-tXq"/>
+                        <outlet property="eventLocation" destination="ioL-Em-bwK" id="eOd-tg-kk4"/>
+                        <outlet property="eventName" destination="WeK-Zo-dck" id="Tuv-Yq-vL3"/>
+                        <outlet property="startDatePicker" destination="cYX-e0-Q73" id="ieQ-4u-LGK"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OC6-w3-XCo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="843.07692307692309" y="823.93364928909944"/>
+        </scene>
+        <!--List View-->
         <scene sceneID="J32-m9-fNy">
             <objects>
                 <tableViewController id="3Fv-dT-5dD" customClass="EventsViewController" customModule="GroupEventsCalendar" customModuleProvider="target" sceneMemberID="viewController">
@@ -115,11 +219,12 @@
                             <outlet property="delegate" destination="3Fv-dT-5dD" id="sYZ-bD-Je9"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="qBi-6B-cyQ">
+                    <navigationItem key="navigationItem" title="List View" id="qBi-6B-cyQ">
                         <rightBarButtonItems>
                             <barButtonItem systemItem="add" id="1T9-Tp-tch">
                                 <connections>
                                     <action selector="addButtonPressed:" destination="3Fv-dT-5dD" id="0g2-4h-72I"/>
+                                    <segue destination="aIs-A9-niL" kind="presentation" id="E4M-eg-ikR"/>
                                 </connections>
                             </barButtonItem>
                             <barButtonItem title="Item" image="calendar" catalog="system" id="ZZh-2j-v9U">
@@ -313,6 +418,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
+        <segue reference="43x-ra-6GE"/>
         <segue reference="Emm-bh-kCc"/>
     </inferredMetricsTieBreakers>
     <resources>
