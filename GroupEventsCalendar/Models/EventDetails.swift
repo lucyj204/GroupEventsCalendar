@@ -15,4 +15,6 @@ class EventDetails: Object {
 //    @objc dynamic var category: String = ""
     
     var parentCategory = LinkingObjects(fromType: Groups.self, property: "events")
+    
+
 }

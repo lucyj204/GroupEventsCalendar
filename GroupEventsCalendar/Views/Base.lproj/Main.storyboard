@@ -79,7 +79,7 @@
                             <barButtonItem systemItem="add" id="KPP-Qa-KxQ">
                                 <connections>
                                     <action selector="AddEvent:" destination="J5G-iC-vc2" id="Z8Z-49-Z2c"/>
-                                    <segue destination="aIs-A9-niL" kind="presentation" id="43x-ra-6GE"/>
+                                    <segue destination="aIs-A9-niL" kind="presentation" identifier="createEvent" id="43x-ra-6GE"/>
                                 </connections>
                             </barButtonItem>
                             <barButtonItem title="Item" image="list.dash" catalog="system" id="WFF-dQ-PFY">
@@ -109,7 +109,7 @@
                                 <rect key="frame" x="46" y="194" width="298" height="456"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="amt-lZ-Nof">
-                                        <rect key="frame" x="49" y="19.999999999999986" width="200" height="248.66666666666663"/>
+                                        <rect key="frame" x="49" y="20" width="200" height="326.33333333333331"/>
                                         <subviews>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Title" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WeK-Zo-dck">
                                                 <rect key="frame" x="0.0" y="0.0" width="200" height="34"/>
@@ -127,8 +127,11 @@
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" style="compact" translatesAutoresizingMaskIntoConstraints="NO" id="cYX-e0-Q73">
-                                                <rect key="frame" x="0.0" y="113" width="200" height="50"/>
+                                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" style="compact" translatesAutoresizingMaskIntoConstraints="NO" id="cYX-e0-Q73">
+                                                <rect key="frame" x="0.0" y="112" width="200" height="50"/>
+                                                <connections>
+                                                    <action selector="startDateValueChanged:" destination="aIs-A9-niL" eventType="valueChanged" id="K0M-TS-aXi"/>
+                                                </connections>
                                             </datePicker>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="End Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DXs-YB-yqv">
                                                 <rect key="frame" x="0.0" y="170.33333333333331" width="200" height="20.333333333333343"/>
@@ -136,36 +139,46 @@
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" style="compact" translatesAutoresizingMaskIntoConstraints="NO" id="MlU-lr-EaN">
-                                                <rect key="frame" x="0.0" y="199" width="200" height="50"/>
+                                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" style="compact" translatesAutoresizingMaskIntoConstraints="NO" id="MlU-lr-EaN">
+                                                <rect key="frame" x="0.0" y="198" width="200" height="50"/>
+                                                <connections>
+                                                    <action selector="endDateValueChanged:" destination="aIs-A9-niL" eventType="valueChanged" id="fQV-sZ-6al"/>
+                                                </connections>
                                             </datePicker>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="contactAdd" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j6q-Hd-vvm">
+                                                <rect key="frame" x="0.0" y="256.66666666666669" width="200" height="30.666666666666686"/>
+                                                <buttonConfiguration key="configuration" style="tinted" cornerStyle="capsule">
+                                                    <backgroundConfiguration key="background">
+                                                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    </backgroundConfiguration>
+                                                    <attributedString key="attributedTitle">
+                                                        <fragment content=" Add Event">
+                                                            <attributes>
+                                                                <font key="NSFont" size="14" name="PTSans-Regular"/>
+                                                                <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                            </attributes>
+                                                        </fragment>
+                                                    </attributedString>
+                                                    <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <color key="baseBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </buttonConfiguration>
+                                                <connections>
+                                                    <action selector="addEventButtonPressed:" destination="aIs-A9-niL" eventType="touchUpInside" id="lkC-LB-jBs"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cLB-Fh-Nsc">
+                                                <rect key="frame" x="0.0" y="295.33333333333331" width="200" height="31"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" title="Cancel"/>
+                                                <connections>
+                                                    <action selector="cancelPressed:" destination="aIs-A9-niL" eventType="touchUpInside" id="dEF-UT-523"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="200" id="ki0-mm-drQ"/>
                                         </constraints>
                                     </stackView>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="contactAdd" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j6q-Hd-vvm">
-                                        <rect key="frame" x="49" y="332" width="200" height="30.666666666666686"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <buttonConfiguration key="configuration" style="tinted" cornerStyle="capsule">
-                                            <backgroundConfiguration key="background">
-                                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            </backgroundConfiguration>
-                                            <attributedString key="attributedTitle">
-                                                <fragment content=" Add Event">
-                                                    <attributes>
-                                                        <font key="NSFont" size="14" name="PTSans-Regular"/>
-                                                        <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                                    </attributes>
-                                                </fragment>
-                                            </attributedString>
-                                            <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            <color key="baseBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </buttonConfiguration>
-                                        <connections>
-                                            <action selector="addEventButtonPressed:" destination="aIs-A9-niL" eventType="touchUpInside" id="lkC-LB-jBs"/>
-                                        </connections>
-                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.87058818339999999" green="0.58823531870000001" blue="0.231372565" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
@@ -224,7 +237,7 @@
                             <barButtonItem systemItem="add" id="1T9-Tp-tch">
                                 <connections>
                                     <action selector="addButtonPressed:" destination="3Fv-dT-5dD" id="0g2-4h-72I"/>
-                                    <segue destination="aIs-A9-niL" kind="presentation" id="E4M-eg-ikR"/>
+                                    <segue destination="aIs-A9-niL" kind="presentation" identifier="createEvent" id="E4M-eg-ikR"/>
                                 </connections>
                             </barButtonItem>
                             <barButtonItem title="Item" image="calendar" catalog="system" id="ZZh-2j-v9U">

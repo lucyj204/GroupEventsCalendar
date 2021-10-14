@@ -14,29 +14,14 @@ import RealmSwift
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
+    var dataStore: DataStore?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
         print(Realm.Configuration.defaultConfiguration.fileURL)
         
-        do {
-        let realm = try Realm()
-        } catch {
-            print("Error initialising new realm, \(error)")
-        }
-        
-        let configuration = Realm.Configuration(schemaVersion: 2, migrationBlock: { migration, oldSchemaVersion in
-            if (oldSchemaVersion < 2) {
-                
-            }
-            
-        })
-        
-        Realm.Configuration.defaultConfiguration = configuration
-        let _ = try! Realm()
-        
-        
+        self.dataStore = DataStore();
         
         FirebaseApp.configure()
         

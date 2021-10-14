@@ -10,6 +10,7 @@
 		1320DE5827173285004955FC /* EventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1320DE5727173284004955FC /* EventsViewController.swift */; };
 		1320DE5A271739B2004955FC /* EventDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1320DE59271739B2004955FC /* EventDetails.swift */; };
 		1320DE7E271868D0004955FC /* EventCreationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1320DE7D271868D0004955FC /* EventCreationViewController.swift */; };
+		1320DE8027188E48004955FC /* DataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1320DE7F27188E47004955FC /* DataStore.swift */; };
 		1327536A2700DFE700D6304B /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 132753692700DFE700D6304B /* CalendarViewController.swift */; };
 		13281CA626D67BC00055F4E0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13281CA526D67BC00055F4E0 /* AppDelegate.swift */; };
 		13281CA826D67BC00055F4E0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13281CA726D67BC00055F4E0 /* SceneDelegate.swift */; };
@@ -30,6 +31,7 @@
 		1320DE5727173284004955FC /* EventsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsViewController.swift; sourceTree = "<group>"; };
 		1320DE59271739B2004955FC /* EventDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetails.swift; sourceTree = "<group>"; };
 		1320DE7D271868D0004955FC /* EventCreationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCreationViewController.swift; sourceTree = "<group>"; };
+		1320DE7F27188E47004955FC /* DataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStore.swift; sourceTree = "<group>"; };
 		132753692700DFE700D6304B /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		13281CA226D67BC00055F4E0 /* GroupEventsCalendar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GroupEventsCalendar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13281CA526D67BC00055F4E0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -92,6 +94,7 @@
 		13281CA426D67BC00055F4E0 /* GroupEventsCalendar */ = {
 			isa = PBXGroup;
 			children = (
+				1320DE7F27188E47004955FC /* DataStore.swift */,
 				13281CA526D67BC00055F4E0 /* AppDelegate.swift */,
 				13281CA726D67BC00055F4E0 /* SceneDelegate.swift */,
 				13281CC026D682310055F4E0 /* Models */,
@@ -270,6 +273,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				13281CBD26D6805C0055F4E0 /* GroupsViewController.swift in Sources */,
+				1320DE8027188E48004955FC /* DataStore.swift in Sources */,
 				1320DE5A271739B2004955FC /* EventDetails.swift in Sources */,
 				134392FB2716F11600A04EB4 /* Groups.swift in Sources */,
 				13281CEA26DFAC870055F4E0 /* RegisterViewController.swift in Sources */,

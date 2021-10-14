@@ -13,12 +13,17 @@ class EventsViewController: UITableViewController {
     let realm = try! Realm()
     
     var events : Results<EventDetails>?
-    let eventCategories = ["Work", "Home", "Dinner", "Party", "Family", "Holiday"]
+    var eventsNotificationToken: NotificationToken?
+    
     
     var selectedGroup : Groups? {
         didSet {
             loadEvents()
         }
+    }
+    
+    deinit {
+        eventsNotificationToken?.invalidate()
     }
     
     override func viewDidLoad() {
@@ -53,49 +58,67 @@ class EventsViewController: UITableViewController {
     func loadEvents() {
         
         events = selectedGroup?.events.sorted(byKeyPath: "title", ascending: true)
+        self.eventsNotificationToken = events!.observe {
+            [weak self] (changes) in
+            guard let tableView = self?.tableView else { return }
+            // TODO: Check changes and mutate specific rows/cells https://docs.mongodb.com/realm/tutorial/ios-swift/#implement-the-tasks-list
+            tableView.reloadData()
+        }
         tableView.reloadData()
     }
     
     //MARK: - Add New Events
     
+    //Now handled by segue to EventsCreationViewController
     
-    @IBAction func addButtonPressed(_ sender: Any) {
-        
-        var textField = UITextField()
-        
-        let alert = UIAlertController(title: "Add New Event", message: "", preferredStyle: .alert)
-        
-        let action = UIAlertAction(title: "Add Event", style: .default) { (action) in
-            
-            if let currentGroup = self.selectedGroup {
-                do {
-                    try self.realm.write {
-                        let newEvent = EventDetails()
-                        newEvent.title = textField.text!
-                        currentGroup.events.append(newEvent)
-//                        newEvent.category = textField.text!
-                    }
-                } catch {
-                    print("Error saving new event")
-                }
-            }
-            self.tableView.reloadData()
-        }
-        
-        alert.addTextField { (alertTextField) in
-            alertTextField.placeholder = "Create new event"
-            textField = alertTextField
-        }
-        
-        alert.addAction(action)
-        
-        present(alert, animated: true, completion: nil)
-        
-    }
+//    @IBAction func addButtonPressed(_ sender: Any) {
+//
+//        var textField = UITextField()
+//
+//        let alert = UIAlertController(title: "Add New Event", message: "", preferredStyle: .alert)
+//
+//        let action = UIAlertAction(title: "Add Event", style: .default) { (action) in
+//
+//            if let currentGroup = self.selectedGroup {
+//                do {
+//                    try self.realm.write {
+//                        let newEvent = EventDetails()
+//                        newEvent.title = textField.text!
+//                        currentGroup.events.append(newEvent)
+////                        newEvent.category = textField.text!
+//                    }
+//                } catch {
+//                    print("Error saving new event")
+//                }
+//            }
+//            self.tableView.reloadData()
+//        }
+//
+//        alert.addTextField { (alertTextField) in
+//            alertTextField.placeholder = "Create new event"
+//            textField = alertTextField
+//        }
+//
+//        alert.addAction(action)
+//
+//        present(alert, animated: true, completion: nil)
+//
+//    }
     
     @IBAction func calendarButtonPressed(_ sender: Any) {
         
         performSegue(withIdentifier: "goToCalendar", sender: self)
         
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier == "createEvent" {
+            let destinationVC = segue.destination as! EventCreationViewController
+            destinationVC.selectedGroup = self.selectedGroup
+        } else {
+            let destinationVC = segue.destination as! CalendarViewController
+            destinationVC.selectedGroup = self.selectedGroup
+        }
     }
 }

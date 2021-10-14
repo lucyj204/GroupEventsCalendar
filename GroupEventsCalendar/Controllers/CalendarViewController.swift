@@ -18,6 +18,7 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
     
     var eventInformation : Results<EventDetails>?
     let datePicker = UIDatePicker()
+    var selectedGroup : Groups?
     
     let realm = try! Realm()
     
