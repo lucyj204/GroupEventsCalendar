@@ -50,43 +50,6 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
         return 1;
     }
     
-//    @IBAction func AddEvent(_ sender: UIBarButtonItem) {
-//
-//        var titleField = UITextField()
-//        var categoryField = UITextField()
-//
-//        let alert = UIAlertController(title: "Add New Event", message: "", preferredStyle: .alert)
-//
-//        let action = UIAlertAction(title: "Add Event", style: .default) { (action) in
-//
-//            if let currentGroup = self.selectedGroup {
-//                do {
-//                    try self.realm.write {
-//                        let newEvent = EventInformation()
-//                        newEvent.title = titleField.text!
-//                        newEvent.startDate = Date()
-//                        newEvent.endDate = Date()
-//                        newEvent.category = categoryField.text!
-//                    }
-//                } catch {
-//                    print("Error saving new event")
-//                }
-//
-//            }
-//            self.calendar.reloadData()
-//        }
-//
-//        alert.addTextField { (alertTextField) in
-//            alertTextField.placeholder = "Add name of event"
-//            titleField = alertTextField
-//        }
-//
-//
-//        alert.addAction(action)
-//
-//        present(alert, animated: true, completion: nil)
-//
-//    }
         
         func createToolbar() -> UIToolbar {
             let toolbar = UIToolbar()
@@ -101,11 +64,7 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
         func createDatePicker() {
             
         }
-        
-//        @objc dynamic var title: String = ""
-//        @objc dynamic var startDate: Date? = Date()
-//        @objc dynamic var endDate: Date? = Date ()
-//        @objc dynamic var category: String = ""
+
         
     }
     
@@ -115,6 +74,7 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
         
     }
     
+
     
     //    func calendar(calendar: FSCalendar, hasEventForDate date: NSDate) -> Bool {
 //

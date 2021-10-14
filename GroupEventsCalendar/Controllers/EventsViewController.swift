@@ -13,6 +13,7 @@ class EventsViewController: UITableViewController {
     let realm = try! Realm()
     
     var events : Results<EventDetails>?
+    let eventCategories = ["Work", "Home", "Dinner", "Party", "Family", "Holiday"]
     
     var selectedGroup : Groups? {
         didSet {
@@ -33,7 +34,7 @@ class EventsViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = super.tableView(tableView, cellForRowAt: indexPath)
+        let cell = UITableViewCell()
         
         if let eventsList = events?[indexPath.row] {
             cell.textLabel?.text = eventsList.title
@@ -71,7 +72,8 @@ class EventsViewController: UITableViewController {
                     try self.realm.write {
                         let newEvent = EventDetails()
                         newEvent.title = textField.text!
-                        newEvent.category = textField.text!
+                        currentGroup.events.append(newEvent)
+//                        newEvent.category = textField.text!
                     }
                 } catch {
                     print("Error saving new event")
@@ -91,4 +93,9 @@ class EventsViewController: UITableViewController {
         
     }
     
+    @IBAction func calendarButtonPressed(_ sender: Any) {
+        
+        performSegue(withIdentifier: "goToCalendar", sender: self)
+        
+    }
 }

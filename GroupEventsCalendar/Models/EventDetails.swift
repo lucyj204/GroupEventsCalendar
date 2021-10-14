@@ -12,7 +12,7 @@ import RealmSwift
 class EventDetails: Object {
     
     @objc dynamic var title: String = ""
-    @objc dynamic var category: String = ""
+//    @objc dynamic var category: String = ""
     
     var parentCategory = LinkingObjects(fromType: Groups.self, property: "events")
 }

@@ -89,11 +89,11 @@ class GroupsViewController: UITableViewController {
     //MARK: - Tableview Delegate Methods
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        performSegue(withIdentifier: "goToCalendar", sender: self)
+        performSegue(withIdentifier: "goToEvents", sender: self)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let destinationVC = segue.destination as! CalendarViewController
+        let destinationVC = segue.destination as! EventsViewController
         
         if let indexPath = tableView.indexPathForSelectedRow {
             destinationVC.selectedGroup = groupArray?[indexPath.row]
