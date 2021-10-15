@@ -14,8 +14,8 @@ class DataStore {
     
     init() {
         
-        let configuration = Realm.Configuration(schemaVersion: 2, migrationBlock: { migration, oldSchemaVersion in
-            if (oldSchemaVersion < 2) {
+        let configuration = Realm.Configuration(schemaVersion: 3, migrationBlock: { migration, oldSchemaVersion in
+            if (oldSchemaVersion < 3) {
                 
             }
             

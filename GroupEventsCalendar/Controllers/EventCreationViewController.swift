@@ -45,6 +45,7 @@ class EventCreationViewController: UIViewController, UITextFieldDelegate, UIPick
             try self.realm.write {
                 let event = EventDetails()
                 event.title = eventName.text!
+                event.startDate = startDatePicker.date
                 self.selectedGroup?.events.append(event)
             }
         } catch {

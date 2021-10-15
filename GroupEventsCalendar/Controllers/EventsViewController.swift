@@ -42,7 +42,7 @@ class EventsViewController: UITableViewController {
         let cell = UITableViewCell()
         
         if let eventsList = events?[indexPath.row] {
-            cell.textLabel?.text = eventsList.title
+            cell.textLabel?.text = "\(eventsList.title)  \(eventsList.startDate)"
         } else {
             cell.textLabel?.text = "No events added"
         }
