@@ -25,6 +25,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         FirebaseApp.configure()
         
+        let realm = try! Realm()
+
+        print(realm.objects(EventDetails.self).filter("startDate <= %@", NSDate.now))
+        
+        
         return true
     }
     

@@ -20,6 +20,7 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
     let datePicker = UIDatePicker()
     var selectedGroup : Groups?
     
+    
     let realm = try! Realm()
     
 //    var selectedGroup : Groups? {
@@ -54,11 +55,28 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
         
     }
     
+     // FSCalendarDataSource
+ 
+        
+//        if let eventsList = events?[indexPath.row] {
+//            cell.textLabel?.text = "\(eventsList.title)  \(eventsList.startDate)"
+//        } else {
+//            cell.textLabel?.text = "No events added"
+//        }
+//
+//        return cell
+    
+
+    
+    func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {
+        
+    
+        //FIXME - this is broken on DST change days
+        return selectedGroup?.events.filter("startDate >= %@ AND startDate < %@", date, date.addingTimeInterval(24 * 60 * 60)).count ?? 0
+    }
 }
     
-//    func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {
-//        return 1;
-//    }
+
 //
 //
 //        func createToolbar() -> UIToolbar {
