@@ -8,9 +8,7 @@
 import UIKit
 import RealmSwift
 
-struct GroupsResponse: Decodable {
-    let group: [String: [Group]]
-}
+typealias GroupsResponse = [String: Group]
 
 struct Group: Decodable {
     let name: String
@@ -98,10 +96,19 @@ class GroupsViewController: UITableViewController {
         var request = URLRequest(url: url)
         request.setValue("abc5365731695765183758165253", forHTTPHeaderField: "gec-session-key")
         
+        
         let session = URLSession(configuration: .default)
         let task = session.dataTask(with: request) { data, response, error in
-            print("The details of the group are \(data)")
-
+            let dataString = String(decoding: data!, as: UTF8.self)
+            print("The details of the group are \(dataString)")
+            
+            let decoder = JSONDecoder()
+            do {
+                let decodedData = try decoder.decode(GroupsResponse.self, from: data!)
+                print("The decoded data is \(decodedData)")
+            } catch {
+                print("Error decoding the data")
+            }
         }
         
 
@@ -110,6 +117,8 @@ class GroupsViewController: UITableViewController {
         groupArray = realm.objects(Groups.self)
         tableView.reloadData()
     }
+    
+    
     
     //MARK: - Tableview Delegate Methods
     
