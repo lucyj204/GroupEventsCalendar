@@ -8,6 +8,15 @@
 import UIKit
 import RealmSwift
 
+struct GroupsResponse: Decodable {
+    let group: [String: [Group]]
+}
+
+struct Group: Decodable {
+    let name: String
+    
+}
+
 class GroupsViewController: UITableViewController {
     
     let realm = try! Realm()
@@ -19,6 +28,8 @@ class GroupsViewController: UITableViewController {
        
         loadGroups()
     }
+    
+    
 
     // MARK: - Table view data source
 
@@ -82,6 +93,20 @@ class GroupsViewController: UITableViewController {
     
     
     func loadGroups() {
+        //TODO - need to add header
+        let url = URL(string: "http://Lucys-MacBook-Air.local:3000/groups")!
+        var request = URLRequest(url: url)
+        request.setValue("abc5365731695765183758165253", forHTTPHeaderField: "gec-session-key")
+        
+        let session = URLSession(configuration: .default)
+        let task = session.dataTask(with: request) { data, response, error in
+            print("The details of the group are \(data)")
+
+        }
+        
+
+        task.resume()
+        
         groupArray = realm.objects(Groups.self)
         tableView.reloadData()
     }
@@ -99,5 +124,7 @@ class GroupsViewController: UITableViewController {
             destinationVC.selectedGroup = groupArray?[indexPath.row]
         }
     }
+    
+    
     
 }
