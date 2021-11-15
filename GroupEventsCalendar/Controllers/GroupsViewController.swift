@@ -19,7 +19,12 @@ class GroupsViewController: UITableViewController {
     
     let realm = try! Realm()
     
-    var groupArray : Results<Groups>?
+    //var groupArray : Results<Groups>?
+    
+    var groups: GroupsResponse?
+//    var sortedGroups: [Dictionary<String, Group>.Element]?
+//    var sortedGroups: [(key: String, value: Group)]?
+    var sortedGroups: [GroupsResponse.Element]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,14 +37,15 @@ class GroupsViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return groupArray?.count ?? 1
+        return sortedGroups?.count ?? 0
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = UITableViewCell()
+        cell.textLabel?.text = sortedGroups![indexPath.row].value.name
         
-        cell.textLabel?.text = groupArray?[indexPath.row].name ?? "No groups added"
+        //cell.textLabel?.text = groups?[indexPath.row.] ?? "No groups added"
         
         return cell
 
@@ -99,23 +105,27 @@ class GroupsViewController: UITableViewController {
         
         let session = URLSession(configuration: .default)
         let task = session.dataTask(with: request) { data, response, error in
-            let dataString = String(decoding: data!, as: UTF8.self)
-            print("The details of the group are \(dataString)")
-            
-            let decoder = JSONDecoder()
-            do {
-                let decodedData = try decoder.decode(GroupsResponse.self, from: data!)
-                print("The decoded data is \(decodedData)")
-            } catch {
-                print("Error decoding the data")
+            DispatchQueue.main.async {
+                let dataString = String(decoding: data!, as: UTF8.self)
+                print("Received group data: \(dataString)")
+                
+                let decoder = JSONDecoder()
+                do {
+                    let decodedData = try decoder.decode(GroupsResponse.self, from: data!)
+                    //self.groups = decodedData
+                    self.sortedGroups = decodedData.sorted(by: { $0.1.name < $1.1.name })
+                    print("The decoded data is \(self.sortedGroups)")
+                } catch {
+                    print("Error decoding the data")
+                }
+                self.tableView.reloadData()
             }
         }
         
 
         task.resume()
         
-        groupArray = realm.objects(Groups.self)
-        tableView.reloadData()
+//        groupArray = realm.objects(Groups.self)
     }
     
     
@@ -130,7 +140,7 @@ class GroupsViewController: UITableViewController {
         let destinationVC = segue.destination as! EventsViewController
         
         if let indexPath = tableView.indexPathForSelectedRow {
-            destinationVC.selectedGroup = groupArray?[indexPath.row]
+//            destinationVC.selectedGroup = groupArray?[indexPath.row]
         }
     }
     
