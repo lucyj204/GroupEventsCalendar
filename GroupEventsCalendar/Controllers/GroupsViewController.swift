@@ -60,50 +60,19 @@ class GroupsViewController: UITableViewController {
         
         let alert = UIAlertController(title: "Add New Group", message: "", preferredStyle: .alert)
         let action = UIAlertAction(title: "Add Group", style: .default) { (action) in
-//
-//            guard let newGroupText = textField.text else {
-//                print("Group name not entered")
-//                return
-//            }
-//
-//            let newGroupNameToAdd = Group(name: newGroupText)
-//            let putRequest = APIRequest(endPoint: "groups")
-//
-//            putRequest.add(newGroupNameToAdd, completion: {result in
-//                switch result {
-//                case .success(let groupNameToAdd):
-//                    print("The following group has been added: \(groupNameToAdd.name)")
-//                case .failure(let error):
-//                    print("Error adding group \(error)")
-//                }
-//            })
-//
-        
-            var request = URLRequest(url: URL(string: "http://Lucys-MacBook-Air.local:3000/groups")!)
-            request.setValue("abc5365731695765183758165253", forHTTPHeaderField: "gec-session-key")
-            request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-            request.httpMethod = "PUT"
-            request.httpBody = try! JSONEncoder().encode(Group(name: textField.text!))
-
-            let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
-                DispatchQueue.main.async {
-                    self.loadGroups();
-                }
+            addGroup(Group(name: textField.text!)) {
+                self.loadGroups();
             }
-            task.resume()
         }
         
         alert.addTextField { (alertTextField) in
             alertTextField.placeholder = "Create new group"
             textField = alertTextField
-            
         }
         
         alert.addAction(action)
         
         present(alert, animated: true, completion: nil)
-        
-        
     }
     
     //MARK: - Model Manipulation Methods
@@ -130,38 +99,11 @@ class GroupsViewController: UITableViewController {
     
     
     func loadGroups() {
-        //TODO - need to add header
-        let url = URL(string: "http://Lucys-MacBook-Air.local:3000/groups")!
-        var request = URLRequest(url: url)
-        request.setValue("abc5365731695765183758165253", forHTTPHeaderField: "gec-session-key")
-        
-        
-        let session = URLSession(configuration: .default)
-        let task = session.dataTask(with: request) { data, response, error in
-            DispatchQueue.main.async {
-                let dataString = String(decoding: data!, as: UTF8.self)
-                print("Received group data: \(dataString)")
-                
-                let decoder = JSONDecoder()
-                do {
-                    let decodedData = try decoder.decode(GroupsResponse.self, from: data!)
-                    //self.groups = decodedData
-                    self.sortedGroups = decodedData.sorted(by: { $0.1.name < $1.1.name })
-                    print("The decoded data is \(self.sortedGroups)")
-                } catch {
-                    print("Error decoding the data")
-                }
-                self.tableView.reloadData()
-            }
+        getGroups() { groups in
+            self.sortedGroups = groups
+            self.tableView.reloadData()
         }
-        
-        
-        task.resume()
-        
-        //        groupArray = realm.objects(Groups.self)
     }
-    
-    
     
     //MARK: - Tableview Delegate Methods
     
@@ -179,4 +121,45 @@ class GroupsViewController: UITableViewController {
     
     
     
+}
+
+func getGroups(_ completion: @escaping(([GroupsResponse.Element]) -> Void)) {
+
+    let url = URL(string: "http://Lucys-MacBook-Air.local:3000/groups")!
+    var request = URLRequest(url: url)
+    request.setValue("abc5365731695765183758165253", forHTTPHeaderField: "gec-session-key")
+    
+    let session = URLSession(configuration: .default)
+    let task = session.dataTask(with: request) { data, response, error in
+        DispatchQueue.main.async {
+            let dataString = String(decoding: data!, as: UTF8.self)
+            print("Received group data: \(dataString)")
+            
+            let decoder = JSONDecoder()
+            do {
+                let decodedData = try decoder.decode(GroupsResponse.self, from: data!)
+                completion(decodedData.sorted(by: { $0.1.name < $1.1.name }))
+            } catch {
+                print("Error decoding the data")
+            }
+        }
+    }
+
+    task.resume()
+}
+
+//MARK: - Add Group function
+func addGroup(_ group: Group, completion: @escaping(() -> Void)) {
+    var request = URLRequest(url: URL(string: "http://Lucys-MacBook-Air.local:3000/groups")!)
+    request.setValue("abc5365731695765183758165253", forHTTPHeaderField: "gec-session-key")
+    request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+    request.httpMethod = "PUT"
+    request.httpBody = try! JSONEncoder().encode(group)
+
+    let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+        DispatchQueue.main.async {
+            completion();
+        }
+    }
+    task.resume()
 }
