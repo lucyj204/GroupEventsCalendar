@@ -61,11 +61,36 @@ class GroupsViewController: UITableViewController {
         let alert = UIAlertController(title: "Add New Group", message: "", preferredStyle: .alert)
         let action = UIAlertAction(title: "Add Group", style: .default) { (action) in
             
-            let newGroup = Groups()
-            newGroup.name = textField.text!
-            print(textField.text!)
+            let newGroup = Group(name: textField.text!)
+            let url = URL(string: "http://Lucys-MacBook-Air.local:3000/groups")!
+            var request = URLRequest(url: url)
+            request.setValue("abc5365731695765183758165253", forHTTPHeaderField: "gec-session-key")
+            request.httpMethod = "PUT"
+            if let data = textField.text?.data(using: String.Encoding.utf8) {
+                request.httpBody = data
+//                print(data)
+            }
             
-            self.saveGroups(group: newGroup)
+            
+            let session = URLSession(configuration: .default)
+            let task = session.dataTask(with: request) { (data, response, error) in
+                
+                if error != nil {
+                    //handle error
+                    print(error)
+                  }
+                  else {
+
+                      let jsonStr = NSString(data: data!, encoding: String.Encoding.utf8.rawValue)
+                      print("Parsed JSON: '\(String(describing: jsonStr))'")
+                  }
+                
+            }
+            task.resume()
+            
+//            print(textField.text!)
+            
+//            self.saveGroups(group: newGroup)
         }
         
         alert.addTextField { (alertTextField) in
@@ -83,17 +108,25 @@ class GroupsViewController: UITableViewController {
     
     //MARK: - Model Manipulation Methods
     
-    func saveGroups(group: Groups) {
-        do {
-            try realm.write {
-                realm.add(group)
-                
-            }
-        } catch {
-            print("Error saving group, \(error)")
-        }
-        tableView.reloadData()
-    }
+//    func saveGroups(group: Groups) {
+//        do {
+//            try realm.write {
+//                realm.add(group)
+//
+//            }
+//        } catch {
+//            print("Error saving group, \(error)")
+//        }
+//        tableView.reloadData()
+//    }
+    
+//    func performPutRequest() {
+//        let url = URL(string: "http://Lucys-MacBook-Air.local:3000/groups")!
+//       var request = URLRequest(url: url)
+//        request.setValue("abc5365731695765183758165253", forHTTPHeaderField: "gec-session-key")
+//        request.httpMethod = "PUT"
+//
+//    }
     
     
     func loadGroups() {
