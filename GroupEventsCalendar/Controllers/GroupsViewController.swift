@@ -10,7 +10,7 @@ import RealmSwift
 
 typealias GroupsResponse = [String: Group]
 
-struct Group: Decodable {
+struct Group: Codable {
     let name: String
     
 }
@@ -22,20 +22,20 @@ class GroupsViewController: UITableViewController {
     //var groupArray : Results<Groups>?
     
     var groups: GroupsResponse?
-//    var sortedGroups: [Dictionary<String, Group>.Element]?
-//    var sortedGroups: [(key: String, value: Group)]?
+    //    var sortedGroups: [Dictionary<String, Group>.Element]?
+    //    var sortedGroups: [(key: String, value: Group)]?
     var sortedGroups: [GroupsResponse.Element]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-       
+        
         loadGroups()
     }
     
     
-
+    
     // MARK: - Table view data source
-
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return sortedGroups?.count ?? 0
     }
@@ -48,11 +48,11 @@ class GroupsViewController: UITableViewController {
         //cell.textLabel?.text = groups?[indexPath.row.] ?? "No groups added"
         
         return cell
-
+        
     }
-
-
-//MARK: - Add New Groups
+    
+    
+    //MARK: - Add New Groups
     
     @IBAction func addButtonPressed(_ sender: UIBarButtonItem) {
         
@@ -61,34 +61,37 @@ class GroupsViewController: UITableViewController {
         let alert = UIAlertController(title: "Add New Group", message: "", preferredStyle: .alert)
         let action = UIAlertAction(title: "Add Group", style: .default) { (action) in
             
-            let newGroup = Group(name: textField.text!)
-            let url = URL(string: "http://Lucys-MacBook-Air.local:3000/groups")!
-            var request = URLRequest(url: url)
-            request.setValue("abc5365731695765183758165253", forHTTPHeaderField: "gec-session-key")
-            request.httpMethod = "PUT"
-            if let data = textField.text?.data(using: String.Encoding.utf8) {
-                request.httpBody = data
-//                print(data)
+            guard let newGroupText = textField.text else {
+                print("Group name not entered")
+                return
             }
             
+            let newGroupNameToAdd = Group(name: newGroupText)
+            let putRequest = APIRequest(endPoint: "groups")
             
-            let session = URLSession(configuration: .default)
-            let task = session.dataTask(with: request) { (data, response, error) in
-                
-                if error != nil {
-                    //handle error
-                    print(error)
-                  }
-                  else {
-
-                      let jsonStr = NSString(data: data!, encoding: String.Encoding.utf8.rawValue)
-                      print("Parsed JSON: '\(String(describing: jsonStr))'")
-                  }
-                
-            }
-            task.resume()
+            putRequest.add(newGroupNameToAdd, completion: {result in
+                switch result {
+                case .success(let groupNameToAdd):
+                    print("The following group has been added: \(groupNameToAdd.name)")
+                case .failure(let error):
+                    print("Error adding group \(error)")
+                }
+            })
             
-//            print(textField.text!)
+        
+            
+//            let url = URL(string: "http://Lucys-MacBook-Air.local:3000/groups")!
+//            var request = URLRequest(url: url)
+//            request.setValue("abc5365731695765183758165253", forHTTPHeaderField: "gec-session-key")
+//            request.httpMethod = "PUT"
+//            request.httpBody = textField.text!.data(using: String.Encoding.utf8)
+//
+//            let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+//
+//
+//
+//            }
+//            task.resume()
             
 //            self.saveGroups(group: newGroup)
         }
@@ -108,25 +111,25 @@ class GroupsViewController: UITableViewController {
     
     //MARK: - Model Manipulation Methods
     
-//    func saveGroups(group: Groups) {
-//        do {
-//            try realm.write {
-//                realm.add(group)
-//
-//            }
-//        } catch {
-//            print("Error saving group, \(error)")
-//        }
-//        tableView.reloadData()
-//    }
+    //    func saveGroups(group: Groups) {
+    //        do {
+    //            try realm.write {
+    //                realm.add(group)
+    //
+    //            }
+    //        } catch {
+    //            print("Error saving group, \(error)")
+    //        }
+    //        tableView.reloadData()
+    //    }
     
-//    func performPutRequest() {
-//        let url = URL(string: "http://Lucys-MacBook-Air.local:3000/groups")!
-//       var request = URLRequest(url: url)
-//        request.setValue("abc5365731695765183758165253", forHTTPHeaderField: "gec-session-key")
-//        request.httpMethod = "PUT"
-//
-//    }
+    //    func performPutRequest() {
+    //        let url = URL(string: "http://Lucys-MacBook-Air.local:3000/groups")!
+    //       var request = URLRequest(url: url)
+    //        request.setValue("abc5365731695765183758165253", forHTTPHeaderField: "gec-session-key")
+    //        request.httpMethod = "PUT"
+    //
+    //    }
     
     
     func loadGroups() {
@@ -155,10 +158,10 @@ class GroupsViewController: UITableViewController {
             }
         }
         
-
+        
         task.resume()
         
-//        groupArray = realm.objects(Groups.self)
+        //        groupArray = realm.objects(Groups.self)
     }
     
     
@@ -173,7 +176,7 @@ class GroupsViewController: UITableViewController {
         let destinationVC = segue.destination as! EventsViewController
         
         if let indexPath = tableView.indexPathForSelectedRow {
-//            destinationVC.selectedGroup = groupArray?[indexPath.row]
+            //            destinationVC.selectedGroup = groupArray?[indexPath.row]
         }
     }
     
