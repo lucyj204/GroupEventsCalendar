@@ -60,40 +60,37 @@ class GroupsViewController: UITableViewController {
         
         let alert = UIAlertController(title: "Add New Group", message: "", preferredStyle: .alert)
         let action = UIAlertAction(title: "Add Group", style: .default) { (action) in
-            
-            guard let newGroupText = textField.text else {
-                print("Group name not entered")
-                return
-            }
-            
-            let newGroupNameToAdd = Group(name: newGroupText)
-            let putRequest = APIRequest(endPoint: "groups")
-            
-            putRequest.add(newGroupNameToAdd, completion: {result in
-                switch result {
-                case .success(let groupNameToAdd):
-                    print("The following group has been added: \(groupNameToAdd.name)")
-                case .failure(let error):
-                    print("Error adding group \(error)")
-                }
-            })
-            
-        
-            
-//            let url = URL(string: "http://Lucys-MacBook-Air.local:3000/groups")!
-//            var request = URLRequest(url: url)
-//            request.setValue("abc5365731695765183758165253", forHTTPHeaderField: "gec-session-key")
-//            request.httpMethod = "PUT"
-//            request.httpBody = textField.text!.data(using: String.Encoding.utf8)
 //
-//            let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
-//
-//
-//
+//            guard let newGroupText = textField.text else {
+//                print("Group name not entered")
+//                return
 //            }
-//            task.resume()
-            
-//            self.saveGroups(group: newGroup)
+//
+//            let newGroupNameToAdd = Group(name: newGroupText)
+//            let putRequest = APIRequest(endPoint: "groups")
+//
+//            putRequest.add(newGroupNameToAdd, completion: {result in
+//                switch result {
+//                case .success(let groupNameToAdd):
+//                    print("The following group has been added: \(groupNameToAdd.name)")
+//                case .failure(let error):
+//                    print("Error adding group \(error)")
+//                }
+//            })
+//
+        
+            var request = URLRequest(url: URL(string: "http://Lucys-MacBook-Air.local:3000/groups")!)
+            request.setValue("abc5365731695765183758165253", forHTTPHeaderField: "gec-session-key")
+            request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+            request.httpMethod = "PUT"
+            request.httpBody = try! JSONEncoder().encode(Group(name: textField.text!))
+
+            let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+                DispatchQueue.main.async {
+                    self.loadGroups();
+                }
+            }
+            task.resume()
         }
         
         alert.addTextField { (alertTextField) in
