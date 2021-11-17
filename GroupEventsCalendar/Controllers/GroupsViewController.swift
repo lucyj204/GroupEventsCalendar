@@ -15,7 +15,7 @@ struct Group: Codable {
     
 }
 
-class GroupsViewController: UITableViewController {
+class GroupsViewController: SwipeTableViewController {
     
     let realm = try! Realm()
     
@@ -42,7 +42,7 @@ class GroupsViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = UITableViewCell()
+        let cell = super.tableView(tableView, cellForRowAt: indexPath)
         cell.textLabel?.text = sortedGroups![indexPath.row].value.name
         
         //cell.textLabel?.text = groups?[indexPath.row.] ?? "No groups added"
@@ -105,6 +105,17 @@ class GroupsViewController: UITableViewController {
         }
     }
     
+    //MARK: - DELETE GROUP WITH SWIPE
+    
+    override func updateSortedGroups(at indexPath: IndexPath) {
+        
+        if let groupForDeletion = self.sortedGroups?[indexPath.row].value.name {
+            deleteGroup(Group(name: groupForDeletion)) {
+                print("Successfully deleted group")
+            }
+        }
+    }
+    
     //MARK: - Tableview Delegate Methods
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -148,6 +159,22 @@ func getGroups(_ completion: @escaping(([GroupsResponse.Element]) -> Void)) {
     task.resume()
 }
 
+func deleteGroup(_ group: Group, completion: @escaping(() -> Void)) {
+    let url = URL(string: "http://Lucys-MacBook-Air.local:3000/groups")!
+    var request = URLRequest(url: url)
+    request.setValue("abc5365731695765183758165253", forHTTPHeaderField: "gec-session-key")
+    request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+    request.httpMethod = "DELETE"
+    request.httpBody = try! JSONEncoder().encode(group)
+    
+    let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+        DispatchQueue.main.async {
+            completion()
+        }
+    }
+    task.resume()
+}
+
 //MARK: - Add Group function
 func addGroup(_ group: Group, completion: @escaping(() -> Void)) {
     var request = URLRequest(url: URL(string: "http://Lucys-MacBook-Air.local:3000/groups")!)
@@ -163,3 +190,4 @@ func addGroup(_ group: Group, completion: @escaping(() -> Void)) {
     }
     task.resume()
 }
+

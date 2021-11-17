@@ -437,6 +437,7 @@ PODS:
   - RealmSwift (10.19.0):
     - Realm (= 10.19.0)
   - SnapKit (4.2.0)
+  - SwipeCellKit (2.7.1)
 
 DEPENDENCIES:
   - Firebase/Auth
@@ -444,6 +445,7 @@ DEPENDENCIES:
   - FSCalendar
   - RealmSwift (~> 10)
   - SnapKit (~> 4.0)
+  - SwipeCellKit
 
 SPEC REPOS:
   trunk:
@@ -466,6 +468,7 @@ SPEC REPOS:
     - Realm
     - RealmSwift
     - SnapKit
+    - SwipeCellKit
 
 SPEC CHECKSUMS:
   abseil: 6c8eb7892aefa08d929b39f9bb108e5367e3228f
@@ -487,7 +490,8 @@ SPEC CHECKSUMS:
   Realm: 869ab2a7e3bdfa6bf06d8723251539f504e6f602
   RealmSwift: f1f51c4a02fe826e5cea623b5441992f06bdc942
   SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
+  SwipeCellKit: 3972254a826da74609926daf59b08d6c72e619ea
 
-PODFILE CHECKSUM: ae857070f52894e4b225cdec60241406670f06aa
+PODFILE CHECKSUM: c52fcaefea0e93b68e750f30c4ae37df43fbeed1
 
-COCOAPODS: 1.10.2
+COCOAPODS: 1.11.2

@@ -13,6 +13,7 @@ target 'GroupEventsCalendar' do
     pod 'FSCalendar'
     pod 'SnapKit', '~> 4.0'
     pod 'RealmSwift', '~>10'
+    pod 'SwipeCellKit'
    
 
 end

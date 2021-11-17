@@ -25,6 +25,7 @@
 		134392F72710936700A04EB4 /* Pacifico-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 134392F52710933500A04EB4 /* Pacifico-Regular.ttf */; };
 		134392FB2716F11600A04EB4 /* Groups.swift in Sources */ = {isa = PBXBuildFile; fileRef = 134392FA2716F11600A04EB4 /* Groups.swift */; };
 		13CAD72C274417E60003EC5B /* APIRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13CAD72B274417E60003EC5B /* APIRequest.swift */; };
+		13CAD73027452B170003EC5B /* SwipeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13CAD72F27452B170003EC5B /* SwipeTableViewController.swift */; };
 		EC879ADB38FDD9CFD8F69F7D /* Pods_GroupEventsCalendar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 887B07E9024EA9C34AEE4329 /* Pods_GroupEventsCalendar.framework */; };
 /* End PBXBuildFile section */
 
@@ -49,6 +50,7 @@
 		134392F52710933500A04EB4 /* Pacifico-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pacifico-Regular.ttf"; sourceTree = "<group>"; };
 		134392FA2716F11600A04EB4 /* Groups.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Groups.swift; sourceTree = "<group>"; };
 		13CAD72B274417E60003EC5B /* APIRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRequest.swift; sourceTree = "<group>"; };
+		13CAD72F27452B170003EC5B /* SwipeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeTableViewController.swift; sourceTree = "<group>"; };
 		524E5A5255C6B1F9D169DD36 /* Pods-GroupEventsCalendar.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GroupEventsCalendar.debug.xcconfig"; path = "Target Support Files/Pods-GroupEventsCalendar/Pods-GroupEventsCalendar.debug.xcconfig"; sourceTree = "<group>"; };
 		887B07E9024EA9C34AEE4329 /* Pods_GroupEventsCalendar.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GroupEventsCalendar.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9DF27A3CD4AE7384E9C95F34 /* Pods-GroupEventsCalendar.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GroupEventsCalendar.release.xcconfig"; path = "Target Support Files/Pods-GroupEventsCalendar/Pods-GroupEventsCalendar.release.xcconfig"; sourceTree = "<group>"; };
@@ -122,6 +124,7 @@
 				132753692700DFE700D6304B /* CalendarViewController.swift */,
 				1320DE5727173284004955FC /* EventsViewController.swift */,
 				1320DE7D271868D0004955FC /* EventCreationViewController.swift */,
+				13CAD72F27452B170003EC5B /* SwipeTableViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -285,6 +288,7 @@
 				13281CEC26DFAC970055F4E0 /* LoginViewController.swift in Sources */,
 				13281CE826DFAC780055F4E0 /* WelcomeViewController.swift in Sources */,
 				1327536A2700DFE700D6304B /* CalendarViewController.swift in Sources */,
+				13CAD73027452B170003EC5B /* SwipeTableViewController.swift in Sources */,
 				13281CA826D67BC00055F4E0 /* SceneDelegate.swift in Sources */,
 				1320DE7E271868D0004955FC /* EventCreationViewController.swift in Sources */,
 				1320DE5827173285004955FC /* EventsViewController.swift in Sources */,
