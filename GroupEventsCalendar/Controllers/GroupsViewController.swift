@@ -8,11 +8,16 @@
 import UIKit
 import RealmSwift
 
-typealias GroupsResponse = [String: Group]
+typealias GroupId = String
+
+typealias GroupsResponse = [GroupId: Group]
 
 struct Group: Codable {
     let name: String
-    
+}
+
+struct NewGroup: Codable {
+    let name: String
 }
 
 class GroupsViewController: SwipeTableViewController {
@@ -61,7 +66,7 @@ class GroupsViewController: SwipeTableViewController {
         
         let alert = UIAlertController(title: "Add New Group", message: "", preferredStyle: .alert)
         let action = UIAlertAction(title: "Add Group", style: .default) { (action) in
-            addGroup(Group(name: textField.text!)) {
+            addGroup(NewGroup(name: textField.text!)) {
                 self.loadGroups();
             }
         }
@@ -88,12 +93,12 @@ class GroupsViewController: SwipeTableViewController {
     
     //MARK: - DELETE GROUP WITH SWIPE
     
-    override func updateSortedGroups(at indexPath: IndexPath) {
+    override func deleteItem(at indexPath: IndexPath) {
         
-        if let groupForDeletion = self.sortedGroups?[indexPath.row].value.name {
+        if let groupForDeletion = self.sortedGroups?[indexPath.row].key {
             sortedGroups?.remove(at: indexPath.row)
             
-            deleteGroup(Group(name: groupForDeletion)) {
+            deleteGroup(groupForDeletion) {
                 print("Successfully deleted group")
                 self.loadGroups()
             }
@@ -145,13 +150,12 @@ func getGroups(_ completion: @escaping(([GroupsResponse.Element]) -> Void)) {
     task.resume()
 }
 
-func deleteGroup(_ group: Group, completion: @escaping(() -> Void)) {
-    let url = URL(string: "http://Lucys-MacBook-Air.local:3000/groups")!
+func deleteGroup(_ id: String, completion: @escaping(() -> Void)) {
+    let url = URL(string: "http://Lucys-MacBook-Air.local:3000/groups/\(id)")!
     var request = URLRequest(url: url)
     request.setValue("abc5365731695765183758165253", forHTTPHeaderField: "gec-session-key")
     request.addValue("application/json", forHTTPHeaderField: "Content-Type")
     request.httpMethod = "DELETE"
-    request.httpBody = try! JSONEncoder().encode(group)
     
     let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
         DispatchQueue.main.async {
@@ -162,12 +166,12 @@ func deleteGroup(_ group: Group, completion: @escaping(() -> Void)) {
 }
 
 //MARK: - Add Group function
-func addGroup(_ group: Group, completion: @escaping(() -> Void)) {
+func addGroup(_ newGroup: NewGroup, completion: @escaping(() -> Void)) {
     var request = URLRequest(url: URL(string: "http://Lucys-MacBook-Air.local:3000/groups")!)
     request.setValue("abc5365731695765183758165253", forHTTPHeaderField: "gec-session-key")
     request.addValue("application/json", forHTTPHeaderField: "Content-Type")
     request.httpMethod = "PUT"
-    request.httpBody = try! JSONEncoder().encode(group)
+    request.httpBody = try! JSONEncoder().encode(newGroup)
 
     let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
         DispatchQueue.main.async {

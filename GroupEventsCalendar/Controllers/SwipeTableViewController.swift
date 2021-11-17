@@ -30,7 +30,7 @@ class SwipeTableViewController: UITableViewController, SwipeTableViewCellDelegat
         
         let deleteAction = SwipeAction(style: .destructive, title: "Delete") { action, indexPath in
             
-            self.updateSortedGroups(at: indexPath)
+            self.deleteItem(at: indexPath)
         }
         
         deleteAction.image = UIImage(named: "delete-icon")
@@ -45,7 +45,7 @@ class SwipeTableViewController: UITableViewController, SwipeTableViewCellDelegat
         return options
     }
     
-    func updateSortedGroups(at indexPath: IndexPath) {
+    func deleteItem(at indexPath: IndexPath) {
         //updateGroups
     }
     
