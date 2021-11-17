@@ -43,6 +43,7 @@ class GroupsViewController: SwipeTableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = super.tableView(tableView, cellForRowAt: indexPath)
+        
         cell.textLabel?.text = sortedGroups![indexPath.row].value.name
         
         //cell.textLabel?.text = groups?[indexPath.row.] ?? "No groups added"
@@ -77,26 +78,6 @@ class GroupsViewController: SwipeTableViewController {
     
     //MARK: - Model Manipulation Methods
     
-    //    func saveGroups(group: Groups) {
-    //        do {
-    //            try realm.write {
-    //                realm.add(group)
-    //
-    //            }
-    //        } catch {
-    //            print("Error saving group, \(error)")
-    //        }
-    //        tableView.reloadData()
-    //    }
-    
-    //    func performPutRequest() {
-    //        let url = URL(string: "http://Lucys-MacBook-Air.local:3000/groups")!
-    //       var request = URLRequest(url: url)
-    //        request.setValue("abc5365731695765183758165253", forHTTPHeaderField: "gec-session-key")
-    //        request.httpMethod = "PUT"
-    //
-    //    }
-    
     
     func loadGroups() {
         getGroups() { groups in
@@ -110,9 +91,14 @@ class GroupsViewController: SwipeTableViewController {
     override func updateSortedGroups(at indexPath: IndexPath) {
         
         if let groupForDeletion = self.sortedGroups?[indexPath.row].value.name {
+            sortedGroups?.remove(at: indexPath.row)
+            
             deleteGroup(Group(name: groupForDeletion)) {
                 print("Successfully deleted group")
+                self.loadGroups()
             }
+            
+            
         }
     }
     
