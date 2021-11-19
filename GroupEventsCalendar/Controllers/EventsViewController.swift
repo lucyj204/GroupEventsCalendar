@@ -14,6 +14,9 @@ typealias EventsResponse = [EventId: Event]
 
 struct Event: Codable {
     let name: String
+    let location: String
+    let startDate: Date
+    let endDate: Date
 }
 
 class EventsViewController: UITableViewController {
@@ -124,6 +127,17 @@ class EventsViewController: UITableViewController {
     }
 }
 
+extension DateFormatter {
+    static let iso8601Full: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
+        formatter.calendar = Calendar(identifier: .iso8601)
+        formatter.timeZone = TimeZone(secondsFromGMT: 0)
+        formatter.locale = Locale(identifier: "en_US_POSIX")
+        return formatter
+    } ()
+}
+
 func getEvents(_ groupId: GroupId, completion: @escaping(([EventsResponse.Element]) -> Void)) {
     
     let url = URL(string: "http://Lucys-MacBook-Air.local:3000/events/?group_id=\(groupId)")!
@@ -134,13 +148,16 @@ func getEvents(_ groupId: GroupId, completion: @escaping(([EventsResponse.Elemen
     let session = URLSession(configuration: .default)
     let task = session.dataTask(with: request) { data, response, error in
         DispatchQueue.main.async {
-            let dataString = String(decoding: data!, as: UTF8.self)
-            print("Received event data: \(dataString)")
             
             let decoder = JSONDecoder()
+            decoder.dateDecodingStrategy = .formatted(DateFormatter.iso8601Full)
+            
+            let dataString = String(decoding: data!, as: UTF8.self)
+            print("Received event data: \(dataString)")
             do {
                 let decodedData = try decoder.decode(EventsResponse.self, from: data!)
                 completion(decodedData.sorted(by: { $0.1.name < $1.1.name }))
+                
             } catch {
                 print("Error decoding the data")
             }

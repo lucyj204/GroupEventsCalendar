@@ -15,9 +15,14 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
      
     @IBOutlet weak var calendar: FSCalendar!
     
-    var eventInformation : Results<EventDetails>?
+    var eventInformation : [EventsResponse.Element]?
     let datePicker = UIDatePicker()
-    var selectedGroup : Groups?
+    var selectedGroupId : GroupId?
+    
+    var events : EventsResponse?
+    var sortedEvents : [EventsResponse.Element]?
+    
+    
     
     let realm = try! Realm()
     
@@ -44,9 +49,27 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
 
     
     func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {
-        
     
         //FIXME - this is broken on DST change days
-        return selectedGroup?.events.filter("startDate >= %@ AND startDate < %@", date, date.addingTimeInterval(24 * 60 * 60)).count ?? 0
+        return eventDate.filter("startDate >= %@ AND startDate < %@", date, date.addingTimeInterval(24 * 60 * 60)).count ?? 0
     }
 }
+
+func getDateForEvents(_ groupId: GroupId, completion: @escaping(([EventsResponse.Element]) -> Void)) {
+    
+    let url = URL(string: "http://Lucys-MacBook-Air.local:3000/events/?group_id=\(groupId)")!
+    print("requesting url: \(url)")
+    var request = URLRequest(url: url)
+    request.setValue("abc5365731695765183758165253", forHTTPHeaderField: "gec-session-key")
+    
+    let session = URLSession(configuration: .default)
+//    let task = session.dataTask(with: request) { data, response, error in
+//        DispatchQueue.main.async {
+//            
+//        }
+//    }
+    
+}
+
+
+
