@@ -117,12 +117,18 @@ class GroupsViewController: SwipeTableViewController {
         let destinationVC = segue.destination as! EventsViewController
         
         if let indexPath = tableView.indexPathForSelectedRow {
-            //            destinationVC.selectedGroup = groupArray?[indexPath.row]
+            destinationVC.selectedGroupId = (sortedGroups![indexPath.row].key)
         }
     }
     
     
     
+}
+
+func performHTTPRequest() {
+    let url = URL(string: "http://Lucys-MacBook-Air.local:3000/groups")!
+    var request = URLRequest(url: url)
+    request.setValue("abc5365731695765183758165253", forHTTPHeaderField: "gec-session-key")
 }
 
 func getGroups(_ completion: @escaping(([GroupsResponse.Element]) -> Void)) {

@@ -8,15 +8,25 @@
 import UIKit
 import RealmSwift
 
+typealias EventId = String
+
+typealias EventsResponse = [EventId: Event]
+
+struct Event: Codable {
+    let name: String
+}
+
 class EventsViewController: UITableViewController {
     
     let realm = try! Realm()
     
-    var events : Results<EventDetails>?
+    var events : EventsResponse?
+    var sortedEvents: [EventsResponse.Element]?
+    
     var eventsNotificationToken: NotificationToken?
     
     
-    var selectedGroup : Groups? {
+    var selectedGroupId : GroupId? {
         didSet {
             loadEvents()
         }
@@ -35,17 +45,13 @@ class EventsViewController: UITableViewController {
     //MARK: - Tableview Datasource Methods
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return events?.count ?? 1
+        return sortedEvents?.count ?? 0
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell()
         
-        if let eventsList = events?[indexPath.row] {
-            cell.textLabel?.text = "\(eventsList.title)  \(eventsList.startDate)"
-        } else {
-            cell.textLabel?.text = "No events added"
-        }
+        cell.textLabel?.text = sortedEvents![indexPath.row].value.name
         
         return cell
     }
@@ -56,15 +62,10 @@ class EventsViewController: UITableViewController {
     //MARK: - Model Manipulation Methods
     
     func loadEvents() {
-        
-        events = selectedGroup?.events.sorted(byKeyPath: "title", ascending: true)
-        self.eventsNotificationToken = events!.observe {
-            [weak self] (changes) in
-            guard let tableView = self?.tableView else { return }
-            // TODO: Check changes and mutate specific rows/cells https://docs.mongodb.com/realm/tutorial/ios-swift/#implement-the-tasks-list
-            tableView.reloadData()
+        getEvents(selectedGroupId!) { events in
+            self.sortedEvents = events
+            self.tableView.reloadData()
         }
-        tableView.reloadData()
     }
     
     //MARK: - Add New Events
@@ -115,10 +116,38 @@ class EventsViewController: UITableViewController {
         
         if segue.identifier == "createEvent" {
             let destinationVC = segue.destination as! EventCreationViewController
-            destinationVC.selectedGroup = self.selectedGroup
+//            destinationVC.selectedGroup = self.selectedGroup
         } else {
             let destinationVC = segue.destination as! CalendarViewController
-            destinationVC.selectedGroup = self.selectedGroup
+//            destinationVC.selectedGroup = self.selectedGroup
         }
     }
 }
+
+func getEvents(_ groupId: GroupId, completion: @escaping(([EventsResponse.Element]) -> Void)) {
+    
+    let url = URL(string: "http://Lucys-MacBook-Air.local:3000/events/?group_id=\(groupId)")!
+    print("requesting url: \(url)")
+    var request = URLRequest(url: url)
+    request.setValue("abc5365731695765183758165253", forHTTPHeaderField: "gec-session-key")
+    
+    let session = URLSession(configuration: .default)
+    let task = session.dataTask(with: request) { data, response, error in
+        DispatchQueue.main.async {
+            let dataString = String(decoding: data!, as: UTF8.self)
+            print("Received event data: \(dataString)")
+            
+            let decoder = JSONDecoder()
+            do {
+                let decodedData = try decoder.decode(EventsResponse.self, from: data!)
+                completion(decodedData.sorted(by: { $0.1.name < $1.1.name }))
+            } catch {
+                print("Error decoding the data")
+            }
+        }
+    }
+
+    task.resume()
+}
+
+//
