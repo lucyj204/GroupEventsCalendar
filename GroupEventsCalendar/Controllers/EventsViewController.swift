@@ -64,7 +64,7 @@ class EventsViewController: UITableViewController {
     
     //MARK: - Model Manipulation Methods
     
-    func loadEvents() {
+    public func loadEvents() {
         getEvents(selectedGroupId!) { events in
             self.sortedEvents = events
             self.tableView.reloadData()

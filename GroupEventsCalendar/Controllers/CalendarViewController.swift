@@ -15,6 +15,19 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
      
     @IBOutlet weak var calendar: FSCalendar!
     
+    fileprivate let gregorianCalendar: Calendar = Calendar(identifier: .gregorian)
+    
+    fileprivate let dateFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        return formatter
+    } ()
+    
+    //Test data
+    
+    var datesWithEvents = ["2021-12-04", "2021-11-27", "2021-11-25", "2021-12-17"]
+    var datesWithMultipleEvents = ["2021-12-01", "2021-11-29", "2021-12-10", "2021-12-01"]
+    
     var eventInformation : [EventsResponse.Element]?
     let datePicker = UIDatePicker()
     var selectedGroupId : GroupId?
@@ -49,27 +62,25 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
 
     
     func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {
-    
-        //FIXME - this is broken on DST change days
-        return eventDate.filter("startDate >= %@ AND startDate < %@", date, date.addingTimeInterval(24 * 60 * 60)).count ?? 0
+        
+        let dateString = self.dateFormatter.string(from: date)
+        
+        if self.datesWithEvents.contains(dateString) {
+            return 1
+        }
+        if self.datesWithMultipleEvents.contains(dateString) {
+            return 3
+        }
+        return 0
+//        FIXME - this is broken on DST change days
+//        return sortedEvents?.filter("startDate >= %@ AND startDate < %@", date, date.addingTimeInterval(24 * 60 * 60)).count ?? 0
+     
     }
+    
 }
 
-func getDateForEvents(_ groupId: GroupId, completion: @escaping(([EventsResponse.Element]) -> Void)) {
-    
-    let url = URL(string: "http://Lucys-MacBook-Air.local:3000/events/?group_id=\(groupId)")!
-    print("requesting url: \(url)")
-    var request = URLRequest(url: url)
-    request.setValue("abc5365731695765183758165253", forHTTPHeaderField: "gec-session-key")
-    
-    let session = URLSession(configuration: .default)
-//    let task = session.dataTask(with: request) { data, response, error in
-//        DispatchQueue.main.async {
-//            
-//        }
-//    }
-    
-}
+// FSCalendarDataSource
+
 
 
 

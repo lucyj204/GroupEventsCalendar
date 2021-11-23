@@ -7,6 +7,14 @@
 
 import UIKit
 import RealmSwift
+import SwiftUI
+
+struct NewEvent: Codable {
+    let name: String
+    let location: String
+    let startDate: Date
+    let endDate: Date
+}
 
 class EventCreationViewController: UIViewController, UITextFieldDelegate, UIPickerViewDelegate {
     
@@ -41,16 +49,17 @@ class EventCreationViewController: UIViewController, UITextFieldDelegate, UIPick
         
         //(UIApplication.shared.delegate as! AppDelegate).dataStore.addEvent(title: eventName.text ?? "", location: eventLocation.text ?? "", startDate: startDatePicker.date, endDate: endDatePicker.date)
        
-        do {
-            try self.realm.write {
-                let event = EventDetails()
-                event.title = eventName.text!
-                event.startDate = startDatePicker.date
-                self.selectedGroup?.events.append(event)
+            addEvent(NewEvent(name: eventName.text!, location: eventLocation.text!, startDate: startDatePicker.date, endDate: endDatePicker.date)) {
             }
-        } catch {
-            print("Error adding event")
-        }
+                
+            
+//            try self.realm.write {
+//                let event = EventDetails()
+//                event.title = eventName.text!
+//                event.startDate = startDatePicker.date
+//                self.selectedGroup?.events.append(event)
+//            }
+        
     
         
         
@@ -71,5 +80,27 @@ class EventCreationViewController: UIViewController, UITextFieldDelegate, UIPick
         return formattedDate
         
     }
+    
+}
+
+//MARK: - Add Event Method
+
+func addEvent(_ newEvent: NewEvent, completion: @escaping(() -> Void)) {
+    var request = URLRequest(url: URL(string: "http://Lucys-MacBook-Air.local:3000/groups")!)
+    request.setValue("abc5365731695765183758165253", forHTTPHeaderField: "gec-session-key")
+    request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+    request.httpMethod = "PUT"
+    request.httpBody = try! JSONEncoder().encode(newEvent)
+    
+    let encoder = JSONEncoder()
+    encoder.dateEncodingStrategy = .formatted(DateFormatter.iso8601Full)
+    
+    let task = URLSession.shared.dataTask(with: request) { data, response, error in
+        DispatchQueue.main.async {
+            completion()
+        }
+    }
+    task.resume()
+    
     
 }
