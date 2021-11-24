@@ -14,8 +14,8 @@ import SwiftUI
 class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDataSource {
      
     @IBOutlet weak var calendar: FSCalendar!
-    
     fileprivate let gregorianCalendar: Calendar = Calendar(identifier: .gregorian)
+    let datePicker = UIDatePicker()
     
     fileprivate let dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
@@ -28,16 +28,17 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
     var datesWithEvents = ["2021-12-04", "2021-11-27", "2021-11-25", "2021-12-17"]
     var datesWithMultipleEvents = ["2021-12-01", "2021-11-29", "2021-12-10", "2021-12-01"]
     
-    var eventInformation : [EventsResponse.Element]?
-    let datePicker = UIDatePicker()
-    var selectedGroupId : GroupId?
+   
+    var selectedGroupId : GroupId? {
+        didSet {
+            print("The selected group id in CalendarViewController at didSet is \(self.selectedGroupId)")
+            loadEvents()
+        }
+    }
     
-    var events : EventsResponse?
     var sortedEvents : [EventsResponse.Element]?
     
-    
-    
-    let realm = try! Realm()
+//    let realm = try! Realm()
     
     override func viewDidLoad() {
         calendar.delegate = self
@@ -59,22 +60,38 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
     
 //MARK: - FSCalendar Datasource Methods
     
-
-    
     func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {
         
-        let dateString = self.dateFormatter.string(from: date)
+        var count = 0
         
-        if self.datesWithEvents.contains(dateString) {
-            return 1
+        for event in self.sortedEvents ?? [] {
+            if event.value.startDate >= date && event.value.startDate < date.addingTimeInterval(24 * 60 * 60) {
+                count += 1;
+            }
+            
         }
-        if self.datesWithMultipleEvents.contains(dateString) {
-            return 3
-        }
-        return 0
+        
+        return count
+        //let dateString = self.dateFormatter.string(from: date)
+//
+//        if self.datesWithEvents.contains(dateString) {
+//            return 1
+//        }
+//        if self.datesWithMultipleEvents.contains(dateString) {
+//            return 3
+//        }
+//        return 0
 //        FIXME - this is broken on DST change days
 //        return sortedEvents?.filter("startDate >= %@ AND startDate < %@", date, date.addingTimeInterval(24 * 60 * 60)).count ?? 0
      
+    }
+    
+    public func loadEvents() {
+        getEvents(selectedGroupId!) { events in
+            self.sortedEvents = events
+            self.calendar.reloadData()
+            print("The selected group id in CalendarViewController is \(self.selectedGroupId)")
+        }
     }
     
 }

@@ -21,23 +21,24 @@ struct Event: Codable {
 
 class EventsViewController: UITableViewController {
     
-    let realm = try! Realm()
+    //let realm = try! Realm()
     
-    var events : EventsResponse?
+    //var events : EventsResponse?
     var sortedEvents: [EventsResponse.Element]?
     
-    var eventsNotificationToken: NotificationToken?
+    //var eventsNotificationToken: NotificationToken?
     
     
-    var selectedGroupId : GroupId? {
+    public var selectedGroupId : GroupId? {
         didSet {
             loadEvents()
+            print("The selected group ID in EventsViewController is \(selectedGroupId!)")
         }
     }
     
-    deinit {
-        eventsNotificationToken?.invalidate()
-    }
+//    deinit {
+//        eventsNotificationToken?.invalidate()
+//    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -120,9 +121,11 @@ class EventsViewController: UITableViewController {
         if segue.identifier == "createEvent" {
             let destinationVC = segue.destination as! EventCreationViewController
 //            destinationVC.selectedGroup = self.selectedGroup
-        } else {
+        }
+        if segue.identifier == "goToCalendar" {
             let destinationVC = segue.destination as! CalendarViewController
-//            destinationVC.selectedGroup = self.selectedGroup
+            destinationVC.selectedGroupId = selectedGroupId
+          
         }
     }
 }
@@ -156,7 +159,7 @@ func getEvents(_ groupId: GroupId, completion: @escaping(([EventsResponse.Elemen
             print("Received event data: \(dataString)")
             do {
                 let decodedData = try decoder.decode(EventsResponse.self, from: data!)
-                completion(decodedData.sorted(by: { $0.1.name < $1.1.name }))
+                completion(decodedData.sorted(by: { $0.1.startDate < $1.1.startDate }))
                 
             } catch {
                 print("Error decoding the data")
