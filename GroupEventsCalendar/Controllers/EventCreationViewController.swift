@@ -33,6 +33,15 @@ class EventCreationViewController: UIViewController, UITextFieldDelegate, UIPick
         
         eventCreationView.layer.cornerRadius = 15
         eventCreationView.layer.masksToBounds = true
+        
+        eventName.delegate = self
+        eventLocation.delegate = self
+        
+        eventName.tag = 1
+        eventLocation.tag = 2
+        
+        hideKeyboard()
+    
     }
     
     
@@ -66,6 +75,29 @@ class EventCreationViewController: UIViewController, UITextFieldDelegate, UIPick
         dismiss(animated: true)
     }
     
+    func hideKeyboard() {
+        
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(
+            target: self,
+            action: #selector(dismissKeyboard))
+        
+        view.addGestureRecognizer(tap)
+    }
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
+        if let nextTextField = self.view.viewWithTag(textField.tag + 1) as? UITextField {
+            nextTextField.becomeFirstResponder()
+        } else {
+            textField.resignFirstResponder()
+        }
+        return false
+    }
+    
     
     @IBAction func cancelPressed(_ sender: UIButton) {
         
@@ -80,6 +112,7 @@ class EventCreationViewController: UIViewController, UITextFieldDelegate, UIPick
         return formattedDate
         
     }
+    
     
 }
 
