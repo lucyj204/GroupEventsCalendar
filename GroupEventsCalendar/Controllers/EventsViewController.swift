@@ -7,6 +7,7 @@
 
 import UIKit
 import RealmSwift
+import SwiftUI
 
 typealias EventId = String
 
@@ -53,12 +54,32 @@ class EventsViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell()
+        let cell = tableView.dequeueReusableCell(withIdentifier: "EventDetailsCell")
         
-        cell.textLabel?.text = sortedEvents![indexPath.row].value.name
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd/MM/yyyy"
+        let dateString = dateFormatter.string(from: sortedEvents![indexPath.row].value.startDate)
         
-        return cell
+        cell?.textLabel?.text = dateString
+        cell?.detailTextLabel?.text = sortedEvents![indexPath.row].value.name
+        return cell!
     }
+    
+        //TODO: use below methods to create sections by startDate for Event
+    
+//    override func numberOfSections(in tableView: UITableView) -> Int {
+//        return 1
+//    }
+//
+//    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+//        if let firstEventInSection = self.sortedEvents?.first {
+//            let dateFormatter = DateFormatter()
+//            dateFormatter.dateFormat = "dd/MM/yyyy"
+//            let dateString = dateFormatter.string(from: firstEventInSection.value.startDate)
+//            return "Date: \(dateString)"
+//        }
+//        return "Section: \(Date())"
+//    }
     
     //MARK: - Tableview Delegate Methods
     
