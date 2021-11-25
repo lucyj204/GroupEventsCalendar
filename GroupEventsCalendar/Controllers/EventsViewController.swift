@@ -57,7 +57,7 @@ class EventsViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "EventDetailsCell")
         
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd/MM/yyyy"
+        dateFormatter.dateFormat = "E d MMM"
         let dateString = dateFormatter.string(from: sortedEvents![indexPath.row].value.startDate)
         
         cell?.textLabel?.text = dateString
@@ -141,7 +141,11 @@ class EventsViewController: UITableViewController {
         
         if segue.identifier == "createEvent" {
             let destinationVC = segue.destination as! EventCreationViewController
-//            destinationVC.selectedGroup = self.selectedGroup
+            destinationVC.selectedGroupId = selectedGroupId
+            destinationVC.onEventAdded = {
+                print("cool, event added")
+                self.loadEvents()
+            }
         }
         if segue.identifier == "goToCalendar" {
             let destinationVC = segue.destination as! CalendarViewController
@@ -190,5 +194,7 @@ func getEvents(_ groupId: GroupId, completion: @escaping(([EventsResponse.Elemen
 
     task.resume()
 }
+
+
 
 //

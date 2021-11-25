@@ -10,17 +10,18 @@ import RealmSwift
 import SwiftUI
 
 struct NewEvent: Codable {
+    let groupId: GroupId
     let name: String
     let location: String
     let startDate: Date
     let endDate: Date
 }
 
+
 class EventCreationViewController: UIViewController, UITextFieldDelegate, UIPickerViewDelegate {
     
-    let realm = try! Realm()
-    
-    var selectedGroup : Groups?
+    var selectedGroupId: GroupId?
+    var onEventAdded: (() -> Void)?
     
     @IBOutlet weak var eventCreationView: UIView!
     @IBOutlet weak var eventName: UITextField!
@@ -58,21 +59,15 @@ class EventCreationViewController: UIViewController, UITextFieldDelegate, UIPick
         
         //(UIApplication.shared.delegate as! AppDelegate).dataStore.addEvent(title: eventName.text ?? "", location: eventLocation.text ?? "", startDate: startDatePicker.date, endDate: endDatePicker.date)
        
-            addEvent(NewEvent(name: eventName.text!, location: eventLocation.text!, startDate: startDatePicker.date, endDate: endDatePicker.date)) {
-            }
-                
-            
-//            try self.realm.write {
-//                let event = EventDetails()
-//                event.title = eventName.text!
-//                event.startDate = startDatePicker.date
-//                self.selectedGroup?.events.append(event)
-//            }
+        
+        addEvent(NewEvent(groupId: self.selectedGroupId!, name: eventName.text!, location: eventLocation.text!, startDate: startDatePicker.date, endDate: endDatePicker.date)) {
+            self.onEventAdded!()
+        }
         
     
+    self.dismiss(animated: true)
         
-        
-        dismiss(animated: true)
+       
     }
     
     func hideKeyboard() {
@@ -118,8 +113,9 @@ class EventCreationViewController: UIViewController, UITextFieldDelegate, UIPick
 
 //MARK: - Add Event Method
 
+
 func addEvent(_ newEvent: NewEvent, completion: @escaping(() -> Void)) {
-    var request = URLRequest(url: URL(string: "http://Lucys-MacBook-Air.local:3000/groups")!)
+    var request = URLRequest(url: URL(string: "http://Lucys-MacBook-Air.local:3000/events")!)
     request.setValue("abc5365731695765183758165253", forHTTPHeaderField: "gec-session-key")
     request.addValue("application/json", forHTTPHeaderField: "Content-Type")
     request.httpMethod = "PUT"
